@@ -66,7 +66,19 @@ select{max-width:100%}
 .file button{all:unset;cursor:pointer;width:20px;height:20px;border-radius:50%;text-align:center;line-height:19px;color:var(--muted)}
 .file button:hover{background:#fff;color:var(--err)}
 
-.sources{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:22px 0}
+.sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;margin:18px 0 0;align-items:start}
+.from{font-size:12.5px;color:var(--muted);margin:0 0 2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sheets{overflow:auto;margin-top:8px}
+.sheets table{border-collapse:collapse;width:100%;font-size:13.5px}
+.sheets th{text-align:left;font-weight:600;color:var(--muted);padding:8px 14px;border-bottom:1px solid var(--line);font-size:12.5px}
+.sheets td{padding:7px 14px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+.sheets tr:last-child td{border-bottom:0}
+.sheets tr.on td:first-child{box-shadow:inset 3px 0 0 var(--data)}
+.sheets tr:not(.on) td:first-child b{font-weight:400;color:var(--muted)}
+.sheets td small{display:block;color:var(--muted);font-size:12px}
+.sheets .num{text-align:right;font-variant-numeric:tabular-nums;width:90px}
+.sheets select{min-width:260px}
+.sheets tr:not(.on) select{color:var(--muted)}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:8px}
 .src{border-top:3px solid var(--data);padding:14px 16px 12px}
 .src.empty{border-top-color:#B9C3C2}
@@ -196,13 +208,52 @@ mark.pl.hot{background:var(--place);color:#fff}
 @media (max-width:1100px){.sources{grid-template-columns:1fr}.split,.gen{grid-template-columns:1fr}.pv,.people{position:static}.people{max-height:320px}}
 @media (max-width:820px){.app{grid-template-columns:1fr}.rail{position:static;height:auto;padding-bottom:8px}.steps{display:grid;grid-template-columns:repeat(4,1fr)}.steps button{grid-template-columns:1fr;padding:10px 12px;border-left:0;border-bottom:3px solid transparent}.steps button[aria-current="step"]{border-bottom-color:#fff}.steps .n{grid-row:auto}.steps .s,.rail .private,.brand-sub{display:none}main{padding:20px 16px 50px}.page{width:auto;padding:16px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.edbar{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.edbar .grp{display:inline-flex;align-items:center;gap:2px;padding-right:8px;border-right:1px solid var(--line-2)}
+.edbar .grp.end{border-right:0;margin-left:auto;padding-right:0}
+.edbar .lbl{font-size:12px;color:var(--muted);margin-right:3px}
+.edbar button{all:unset;box-sizing:border-box;min-width:28px;height:28px;padding:0 7px;border-radius:5px;cursor:pointer;font-size:13px;display:inline-flex;align-items:center;justify-content:center}
+.edbar button:hover{background:var(--place-bg)}
+.edbar button:focus-visible{outline:2px solid var(--place);outline-offset:0}
+.edbar button[disabled]{opacity:.35;cursor:not-allowed;background:none}
+.edbar select{height:28px;padding:2px 4px;font-size:13px}
+.swatch{position:relative;display:inline-flex;align-items:center;justify-content:center;width:28px;height:26px;border-radius:5px 5px 0 0;cursor:pointer;font-weight:700;border-bottom:3px solid #C0392B}
+.swatch input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;padding:0;border:0}
+.swatch.fill{border-bottom:0;border-radius:5px}.swatch.fill span{width:16px;height:16px;background:#D9D9D9;border:1px solid #777;display:block}
+.swatch:hover{background:var(--place-bg)}
+.page.edit .ed{outline:none;border-radius:2px;cursor:text;white-space:pre-wrap}
+.page.edit .ed:hover{background:#EEF3FF}
+.page.edit .ed:focus{background:#FFF6CF;box-shadow:0 0 0 1px #E0B25B}
+.page.edit .ed:empty{display:inline-block;min-width:2.4em;min-height:1.15em;vertical-align:bottom;border-bottom:1px dashed #B9C3C2}
+.page.edit .fld{background:var(--place-bg);color:#17367A;border-radius:3px;padding:0 3px;box-shadow:inset 0 0 0 1px var(--place-line)}
+.page.edit .selp{box-shadow:-3px 0 0 var(--place)}
+.page.edit td.selc{box-shadow:inset 0 0 0 2px var(--place)}
+.page.edit tr.proto td:first-child{box-shadow:inset 4px 0 0 var(--data)}
+.page.edit tr.proto td.selc:first-child{box-shadow:inset 4px 0 0 var(--data),inset 0 0 0 2px var(--place)}
+.page.edit tr.ghost td{opacity:.38;pointer-events:none}
+.sumrow{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:6px 8px;margin:0;padding:8px 0;border-bottom:1px solid var(--line-2)}
+.sumrow .lab{font-weight:600;align-self:center;overflow-wrap:anywhere}
+.sumrow .more{grid-column:1/-1;font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.editor td.c{text-align:center}
+.editor input[type=checkbox].typed{outline:2px solid var(--place);outline-offset:1px}
+#tplforms{min-width:0}
+.rules{grid-template-columns:minmax(0,1fr)}
+.rules section{min-width:0;overflow-x:auto}
+#tplforms table{width:100%}
+#tplforms td{padding-right:8px}
+#tplforms td input[type=text],#tplforms td select{width:100%;min-width:0}
+.tag{white-space:nowrap}
+.mini{white-space:nowrap}
+.pv.editing .pv-scroll{max-height:calc(100vh - 310px);min-height:320px}
+.split>*,.gen>*{min-width:0}
+@media (max-width:1100px){.split,.gen{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
 <div class="app">
   <nav class="rail" aria-label="Steps">
     <div class="brand">Transcript Builder</div>
-    <div class="brand-sub">Registers and IB results into Word transcripts</div>
+    <div class="brand-sub">Excel data into Word transcripts</div>
     <ol class="steps" id="steps"></ol>
     <p class="private">Your files are read by this page on this computer. Nothing is uploaded or sent anywhere.</p>
   </nav>
@@ -575,6 +626,87 @@ function guessAlias(subj, ibSubjects) {
   return best;
 }
 
+
+/* ================================================================
+   Ready tables: a sheet that already has one row per student
+   ================================================================ */
+function flatHeaderRow(sh) {
+  let best = 0, bestN = -1;
+  for (let r = 0; r < Math.min(15, sh.rows.length); r++) {
+    const row = sh.rows[r]; if (!row) continue;
+    let n = 0; for (const v of row) if (typeof v === 'string' && v.trim()) n++;
+    if (n > bestN && sh.rows.slice(r + 1, r + 8).some(Boolean)) { bestN = n; best = r; }
+  }
+  return best;
+}
+function flatKeyCol(sh, hr) {
+  const hs = (sh.rows[hr] || []).map(norm);
+  const filled = i => { let n = 0, seen = 0; for (let r = hr + 1; r < Math.min(sh.rows.length, hr + 80); r++) { const row = sh.rows[r]; if (!row) continue; seen++; if (row[i] != null && row[i] !== '') n++; } return seen === 0 || n / seen >= 0.5; };
+  for (const p of [/^dia id( final)?$/, /^student id$/, /^isams student id$/, /^id$/, /^candidate (code|number)$/, /(^| )id$/])
+    for (let i = 0; i < hs.length; i++) if (hs[i] && p.test(hs[i]) && !/school|\(|key/.test(hs[i]) && filled(i)) return i;
+  return null;
+}
+const makeFlat = sh => { const hr = flatHeaderRow(sh); return { sheet: sh.id, headerRow: hr, key: flatKeyCol(sh, hr), skip: [] }; };
+const cellVal = v => v == null ? '' : v instanceof Date || typeof v === 'number' ? v : typeof v === 'boolean' ? (v ? 'TRUE' : 'FALSE') : txt(v);
+function loadFlat(S, fl) {
+  const sh = S.sheetOf(fl); if (!sh) return null;
+  const hdr = sh.rows[fl.headerRow] || [], skip = new Set(fl.skip || []), count = new Map(), cols = [], all = [];
+  for (let i = 0; i < hdr.length; i++) {
+    const h = hdr[i]; if (h == null || String(h).trim() === '') continue;
+    const header = h instanceof Date ? fmtDate(h, 'DD/MM/YYYY') : String(h), k = norm(header);
+    count.set(k, (count.get(k) || 0) + 1);
+    const c = { i, header, label: header.replace(/\s+/g, ' ').trim(), type: 'text' };
+    all.push(c); if (!skip.has(i)) cols.push(c);
+  }
+  for (const c of all) if (count.get(norm(c.header)) > 1) c.label += ` (column ${colLetter(c.i)})`;
+  const recs = [], byId = new Map(); let dup = 0;
+  for (let r = fl.headerRow + 1; r < sh.rows.length; r++) {
+    const row = sh.rows[r]; if (!row || !row.some(v => v != null && v !== '')) continue;
+    const id = fl.key != null ? normId(row[fl.key], S.cfg.idPrefix) : '';
+    recs.push({ row, r, id });
+    if (id) { if (byId.has(id)) dup++; else byId.set(id, row); }
+  }
+  for (const c of cols) { for (let k = 0; k < Math.min(recs.length, 150); k++) if (recs[k].row[c.i] instanceof Date) { c.type = 'date'; break; } }
+  const find = (...pats) => { for (const p of pats) { const c = all.find(c => p.test(norm(c.header))); if (c) return c.i; } return null; };
+  return {
+    sheetId: sh.id, name: sh.name.trim(), slug: String(sh.name).toLowerCase().replace(/[^a-z0-9]/g, ''), cols, all, recs, byId, dup, keyed: fl.key != null, key: fl.key,
+    who: { surname: find(/^surname$/, /^last name$/), forename: find(/^forename$/, /^first name$/), full: find(/^(student )?(full ?)?name$/, /student fullname$/, /name/), form: find(/^(current )?form$/, /^class$/, /^section$/) },
+  };
+}
+/** No registers in use: the first ready table gives the rows, further ready tables add columns by ID. */
+function processFlat(S, flats) {
+  const cfg = S.cfg, main = flats[0], issues = [], students = [], used = new Map();
+  const issue = (code, sev, title, help, items) => { if (items.length) issues.push({ code, sev, title, help, items }); };
+  const str = v => v == null || v instanceof Date ? '' : String(cellVal(v));
+  const dups = [];
+  for (const rec of main.recs) {
+    let id = rec.id || `Row ${rec.r + 1}`;
+    const n = used.get(id) || 0; used.set(id, n + 1);
+    const w = main.who, g = i => i == null ? '' : str(rec.row[i]);
+    const st = { id: n ? `${id} #${n + 1}` : id, idText: main.keyed ? str(rec.row[main.key]) : `Row ${rec.r + 1}`, has10: false, has11: false, hasIb: false, blocks: {}, flags: [], order: students.length, x: {},
+      surname: w.surname != null ? g(w.surname) : (w.forename == null ? (g(w.full) || (main.keyed ? str(rec.row[main.key]) : '') || (main.cols[0] ? g(main.cols[0].i) : '')) : ''),
+      forename: g(w.forename), form: '', curForm: g(w.form), y11Form: '', flagCount: 0 };
+    st.name = `${st.surname} ${st.forename}`.trim();
+    if (n) dups.push({ id: st.idText, name: st.name, detail: `Sheet row ${rec.r + 1}` });
+    st.x[main.sheetId] = rec.row;
+    for (const f of flats.slice(1)) st.x[f.sheetId] = rec.id ? (f.byId.get(rec.id) || null) : null;
+    students.push(st);
+  }
+  issue('dupid', 'warn', 'The same ID appears on more than one row', 'Each row still gets its own document. Check the table for a repeated student.', dups);
+  for (const f of flats.slice(1)) {
+    if (!main.keyed || !f.keyed) { issue('nokey' + f.sheetId, 'error', `"${f.name}" cannot be matched to the main table`, 'Both tables need an ID column so rows can be matched. Choose one for each table in Raw data.', [{ id: '', name: f.name, detail: !f.keyed ? 'No ID column chosen for this table' : 'No ID column chosen for the main table' }]); continue; }
+    issue('nomatch' + f.sheetId, 'info', `No row in "${f.name}"`, 'These rows of the main table have no match in this table, so its columns are empty for them.', students.filter(s => !s.x[f.sheetId]).map(s => ({ id: s.idText, name: s.name, detail: '' })));
+  }
+  const cmp = (x, y) => x.localeCompare(y, undefined, { sensitivity: 'base', numeric: true });
+  if (cfg.sort === 'surname') students.sort((x, y) => cmp(x.surname, y.surname) || cmp(x.forename, y.forename));
+  else if (cfg.sort === 'form') students.sort((x, y) => cmp(x.curForm, y.curForm) || cmp(x.surname, y.surname));
+  else if (cfg.sort === 'id') students.sort((x, y) => cmp(x.idText, y.idText));
+  const flagged = new Set(dups.map(d => d.id)); for (const s of students) if (flagged.has(s.idText)) s.flagCount = 1;
+  const n = students.length;
+  return { mode: 'flat', students, columns: buildColumns(cfg, null, flats, true), issues, counts: { either: n, y10: 0, y11: 0, both: 0 }, flats,
+    y10: null, y11: null, ib: null, y11Subjects: new Map(), y10Codes: new Map(), aliasOf: {}, y10name: x => x, ibSubjects: new Set(), unusedGroups: { y10: [], y11: [] } };
+}
+
 /* ================================================================
    Processing: three raw sheets → one row per student
    ================================================================ */
@@ -619,7 +751,8 @@ const majority = m => { let best = '', n = 0; if (m) for (const [k, v] of m) if 
 function processAll(S) {
   const cfg = S.cfg;
   const y10 = loadRegister(S, 'y10'), y11 = loadRegister(S, 'y11'), ib = loadIb(S);
-  if (!y10 && !y11) return null;
+  const flats = (S.flats || []).map(f => loadFlat(S, f)).filter(Boolean);
+  if (!y10 && !y11) return flats.length ? processFlat(S, flats) : null;
   const issues = [];
   const issue = (code, sev, title, help) => { const it = { code, sev, title, help, items: [] }; issues.push(it); return it; };
   const blocks = cfg.blocks;
@@ -673,7 +806,8 @@ function processAll(S) {
   for (const id of ids) {
     if (!keep(id)) continue;
     const a = y10 && y10.byId.get(id), b = y11 && y11.byId.get(id), c = ib && ib.byId.get(id);
-    const st = { id, has10: !!a, has11: !!b, hasIb: !!c, order: students.length, blocks: {}, flags: [] };
+    const st = { id, idText: id, has10: !!a, has11: !!b, hasIb: !!c, order: students.length, blocks: {}, flags: [], x: {} };
+    for (const f of flats) st.x[f.sheetId] = f.byId.get(id) || null;
     const first = (role) => { let v = a ? pick(y10, a, role) : ''; if (v === '' && b) v = pick(y11, b, role); return v; };
     const nm = (v) => (v instanceof Date ? '' : String(v));
     st.schoolId = nm(first('schoolId')); st.surname = nm(first('surname')); st.forename = nm(first('forename'));
@@ -767,6 +901,11 @@ function processAll(S) {
   const unAliased = [...y11Subjects.entries()].filter(([k]) => ib && !aliasOf[k] && cfg.aliases[k] === undefined);
   if (unAliased.length) list('alias', 'error', 'Year 11 subject not found in the IB results', 'Pick the matching IB subject under Rules → Subject names, or choose "no IB grade".', unAliased.map(([k, v]) => ({ id: '', name: v.label, detail: `${v.count} students` })));
 
+  for (const f of flats) {
+    if (!f.keyed) { list('nokey' + f.sheetId, 'error', `"${f.name}" cannot be matched to students`, 'Choose its ID column in Raw data so each row can be matched to a student.', [{ id: '', name: f.name, detail: 'No ID column chosen' }]); continue; }
+    list('nomatch' + f.sheetId, 'info', `No row in "${f.name}"`, 'These students have no row in this table, so its columns are empty for them.', students.filter(s => !s.x[f.sheetId]).map(s => ({ id: s.id, name: s.name, detail: '' })));
+  }
+
   /* --- sort --- */
   const cmp = (x, y) => x.localeCompare(y, undefined, { sensitivity: 'base', numeric: true });
   if (cfg.sort === 'surname') students.sort((x, y) => cmp(x.surname, y.surname) || cmp(x.forename, y.forename));
@@ -778,16 +917,19 @@ function processAll(S) {
   for (const s of students) s.flagCount = flagged.get(s.id) || 0;
 
   return {
-    students, columns: buildColumns(cfg), issues: issues.filter(i => i.items.length), counts,
+    mode: 'registers', flats, students, columns: buildColumns(cfg, { y10: !!y10, y11: !!y11, ib: !!ib }, flats), issues: issues.filter(i => i.items.length), counts,
     y10, y11, ib, y11Subjects, y10Codes, aliasOf, y10name, ibSubjects,
     unusedGroups: { y10: y10 ? [...y10.groups].filter(([g]) => !usedGroups.y10.has(g)).map(([, v]) => v) : [], y11: y11 ? [...y11.groups].filter(([g]) => !usedGroups.y11.has(g)).map(([, v]) => v) : [] },
   };
 }
 
 /** Column list of the combined table. `header` is the exact Excel header (the Word template's field names derive from it). */
-function buildColumns(cfg) {
+function buildColumns(cfg, have, flats, flatOnly) {
+  have = have || { y10: true, y11: true, ib: true };
   const cols = [];
   const add = (id, header, label, group, type, get, extra) => cols.push({ id, header, label, group, type, get, extra: !!extra });
+  const need = [null, 'y10', 'y10', 'y10', 'y10', 'y11', 'y11', 'ib'];
+  if (!flatOnly) {
   add('schoolId', 'School ID', 'School ID', 'Student', 'text', s => s.schoolId);
   add('id', `${cfg.idPrefix || 'Student'} ID`, 'Student ID', 'Student', 'text', s => s.id);
   add('surname', 'Surname', 'Surname', 'Student', 'text', s => s.surname);
@@ -800,19 +942,25 @@ function buildColumns(cfg) {
   add('joined', 'Date of Joining', 'Date of joining', 'Student', 'date', s => s.joined);
   const getters = [o => o.name, o => o.s10, o => o.set10, o => o.jan10, o => o.jun10, o => o.set11, o => o.jan11, o => o.ib];
   const types = ['text', 'text', 'text', 'grade', 'grade', 'text', 'grade', 'grade'];
-  for (const b of cfg.blocks) b.h.forEach((hd, i) => { if (hd != null) add(`${b.key}.${i}`, hd, SLOT_LABELS[i], b.name, types[i], s => { const v = getters[i](s.blocks[b.key]); return v == null ? '' : v; }); });
+  for (const b of cfg.blocks) b.h.forEach((hd, i) => { if (hd != null && (!need[i] || have[need[i]])) add(`${b.key}.${i}`, hd, SLOT_LABELS[i], b.name, types[i], s => { const v = getters[i](s.blocks[b.key]); return v == null ? '' : v; }); });
   for (const b of cfg.blocks) add(`${b.key}.label`, `${b.name.toUpperCase()} LABEL`, 'Subject name, noting a Y10 change', b.name, 'text', s => s.blocks[b.key].label, true);
   add('fullName', 'Full Name', 'Full name (Forename Surname)', 'More', 'text', s => `${s.forename} ${s.surname}`.trim(), true);
   add('curYear', 'Current Year Group', 'Current year group', 'More', 'text', s => s.curYear, true);
   add('curForm', 'Current Form', 'Current form', 'More', 'text', s => s.curForm, true);
+  if (have.y11) {
   add('y11Year', 'Y11 Year Group', 'Year group (Y11)', 'More', 'text', s => s.y11Year, true);
   add('y11Form', 'Y11 Form', 'Form (Y11)', 'More', 'text', s => s.y11Form, true);
+  }
+  if (have.ib) {
   add('ibPP', 'IB PERSONAL PROJECT', 'IB Personal Project grade', 'More', 'grade', s => s.ibx.pp ?? '', true);
   add('ibID', 'IB INTERDISCIPLINARY', 'IB Interdisciplinary grade', 'More', 'grade', s => s.ibx.idu ?? '', true);
   add('ibTotal', 'IB TOTAL', 'IB total points', 'More', 'grade', s => s.ibx.total, true);
   add('ibCand', 'IB CANDIDATE CODE', 'IB candidate code', 'More', 'text', s => s.ibx.candidate, true);
   add('ibSess', 'IB SESSION NUMBER', 'IB session number', 'More', 'text', s => s.ibx.session, true);
   add('ibCourse', 'IB COURSE OR CERTIFICATE', 'IB course / certificate', 'More', 'text', s => s.ibx.course, true);
+  }
+  }
+  for (const f of flats || []) for (const c of f.cols) add(`x.${f.slug}.${c.i}`, c.header, c.label, f.name, c.type, s => { const row = s.x && s.x[f.sheetId]; return row ? cellVal(row[c.i]) : ''; }, !flatOnly);
   // Word turns a header into a merge-field name: first 40 characters, drop punctuation, spaces → _
   const seen = new Map();
   for (const c of cols) {
@@ -989,13 +1137,18 @@ async function loadTemplate(buf, fileName) {
   const files = {};
   for (const p of Object.keys(zip.files)) if (!zip.files[p].dir) files[p] = await zip.files[p].async('uint8array');
   if (!files['word/document.xml']) throw new Error(`"${fileName}" is not a Word .docx file. Old .doc files need to be saved as .docx first.`);
-  const dec = new TextDecoder();
+  return makeTemplate(files, fileName, []);
+}
+/** Build the working template from the unpacked .docx, after replaying the edits made on the page. */
+function makeTemplate(files, fileName, ops) {
+  const dec = new TextDecoder(); let editDoc = null;
   const text = p => files[p] ? dec.decode(files[p]) : null;
   const fields = [], parts = {}; let other = 0;
   const partPaths = ['word/document.xml', ...Object.keys(files).filter(p => /^word\/(header|footer)\d*\.xml$/.test(p)).sort()];
   for (const p of partPaths) {
     const doc = xmlParse(text(p));
     if (doc.getElementsByTagName('parsererror').length) { if (p === 'word/document.xml') throw new Error(`"${fileName}" has a damaged document part and cannot be read.`); continue; }
+    if (p === 'word/document.xml') { if (typeof applyOps === 'function') applyOps(doc, ops || []); editDoc = doc.cloneNode(true); }
     const before = fields.length;
     other += tokenisePart(doc, p, fields).other;
     // typed placeholders are collected back-to-front inside a paragraph; restore reading order by token position
@@ -1021,7 +1174,7 @@ async function loadTemplate(buf, fileName) {
 
   // relationships (for preview images)
   const relsOf = p => { const m = {}; const t = text(p.replace(/([^/]+)$/, '_rels/$1.rels')); if (t) for (const r of tags(xmlParse(t), 'Relationship')) m[r.getAttribute('Id')] = r.getAttribute('Target'); return m; };
-  const tpl = { name: fileName, files, parts, partPaths, fields: sorted, other, urls: {}, relsOf, text };
+  const tpl = { name: fileName, files, parts, partPaths, fields: sorted, other, urls: {}, relsOf, text, editDoc };
   compileTemplate(tpl);
   return tpl;
 }
@@ -1062,7 +1215,8 @@ function compileTemplate(tpl) {
 }
 
 /* ---------------- preview ---------------- */
-function previewHtml(tpl, valueOf) {
+function previewHtml(tpl, valueOf, opt) {
+  opt = opt || {}; const EP = new Map(), ET = new Map();
   const media = (part, rid) => {
     const rels = tpl._rels || (tpl._rels = {}); const map = rels[part] || (rels[part] = tpl.relsOf(part));
     let target = map[rid]; if (!target) return '';
@@ -1072,7 +1226,7 @@ function previewHtml(tpl, valueOf) {
     return tpl.urls[target];
   };
   const tokens = s => esc(s).replace(TOK_RE, (m, i) => valueOf(+i));
-  let part = '';
+  let part = ''; const late = [];
   const kids = el => { let o = ''; for (const c of el.children) o += node(c); return o; };
   const runStyle = rPr => {
     if (!rPr) return ''; let s = '';
@@ -1088,15 +1242,15 @@ function previewHtml(tpl, valueOf) {
     const grid = wchild(tbl, 'tblGrid'); const widths = grid ? [...grid.children].map(g => +wattr(g, 'w') || 0) : []; const total = widths.reduce((a, b) => a + b, 0);
     const model = rows.map(tr => { let pos = 0; return [...tr.children].filter(c => c.localName === 'tc').map(tc => { const pr = wchild(tc, 'tcPr'); const gs = pr && wchild(pr, 'gridSpan'); const span = gs ? (+wattr(gs, 'val') || 1) : 1; const vm = pr && wchild(pr, 'vMerge'); const o = { tc, pr, span, start: pos, vm: vm ? (wattr(vm, 'val') === 'restart' ? 'start' : 'cont') : null, rowspan: 1 }; pos += span; return o; }); });
     model.forEach((cells, r) => cells.forEach(c => { if (c.vm === 'start') for (let k = r + 1; k < model.length; k++) { const below = model[k].find(x => x.start === c.start); if (below && below.vm === 'cont') c.rowspan++; else break; } }));
-    let o = '<table class="dx-t">';
+    const ti = ET.get(tbl); let o = `<table class="dx-t"${ti != null ? ` data-tbl="${ti}"` : ''}>`, ri = -1;
     for (const cells of model) {
-      o += '<tr>';
+      ri++; o += `<tr${ti != null ? ` data-tr="${ri}" class="${opt.rowClass ? opt.rowClass(ti, ri, rows[ri]) || '' : ''}"` : ''}>`;
       for (const c of cells) {
         if (c.vm === 'cont') continue;
         const shd = c.pr && wchild(c.pr, 'shd'); const fill = shd && wattr(shd, 'fill');
         const w = total ? widths.slice(c.start, c.start + c.span).reduce((a, b) => a + b, 0) / total * 100 : 0;
         const va = c.pr && wchild(c.pr, 'vAlign'); const vav = va && wattr(va, 'val');
-        o += `<td${c.span > 1 ? ` colspan="${c.span}"` : ''}${c.rowspan > 1 ? ` rowspan="${c.rowspan}"` : ''} style="${w ? `width:${w.toFixed(1)}%;` : ''}${fill && /^[0-9A-Fa-f]{6}$/.test(fill) ? `background:#${fill};` : ''}${vav === 'center' ? 'vertical-align:middle;' : vav === 'bottom' ? 'vertical-align:bottom;' : ''}">${kids(c.tc)}</td>`;
+        o += `<td${ti != null ? ` data-tc="${ti}:${ri}:${cells.indexOf(c)}"` : ''}${c.span > 1 ? ` colspan="${c.span}"` : ''}${c.rowspan > 1 ? ` rowspan="${c.rowspan}"` : ''} style="${w ? `width:${w.toFixed(1)}%;` : ''}${fill && /^[0-9A-Fa-f]{6}$/.test(fill) ? `background:#${fill};` : ''}${vav === 'center' ? 'vertical-align:middle;' : vav === 'bottom' ? 'vertical-align:bottom;' : ''}">${kids(c.tc)}</td>`;
       }
       o += '</tr>';
     }
@@ -1109,13 +1263,16 @@ function previewHtml(tpl, valueOf) {
     const blip = el.getElementsByTagNameNS('*', 'blip')[0];
     if (blip) { const rid = blip.getAttributeNS(REL, 'embed') || blip.getAttribute('r:embed'); const url = rid && media(part, rid); if (url) o += `<img class="dx-img" src="${url}" alt="" style="width:${Math.min(wpx, 640)}px;${wpx ? `aspect-ratio:${wpx}/${hpx || 1};` : ''}">`; }
     for (const tb of el.getElementsByTagNameNS(W, 'txbxContent')) o += `<span class="dx-box">${kids(tb)}</span>`;
+    // a picture pinned to the lower part of the page (a footer band, a stamp) is drawn after the text, not where its anchor sits
+    const pv = el.getElementsByTagNameNS('*', 'positionV')[0];
+    if (pv && pv.getAttribute('relativeFrom') === 'page' && +(pv.textContent || 0) > 5000000) { late.push(o); return ''; }
     return o;
   };
   function node(el) {
     const ln = el.localName;
     if (el.namespaceURI === W) {
       switch (ln) {
-        case 'p': { const pPr = wchild(el, 'pPr'); const jc = pPr && wchild(pPr, 'jc'); const al = jc && wattr(jc, 'val'); const inner = kids(el); const li = pPr && wchild(pPr, 'numPr'); return `<div class="dx-p${li ? ' dx-li' : ''}"${al ? ` style="text-align:${al === 'both' ? 'justify' : al === 'right' || al === 'end' ? 'right' : al === 'center' ? 'center' : 'left'}"` : ''}>${inner || '&nbsp;'}</div>`; }
+        case 'p': { if (EP.has(el)) return editPara(el); const pPr = wchild(el, 'pPr'); const jc = pPr && wchild(pPr, 'jc'); const al = jc && wattr(jc, 'val'); const inner = kids(el); const li = pPr && wchild(pPr, 'numPr'); return `<div class="dx-p${li ? ' dx-li' : ''}"${al ? ` style="text-align:${al === 'both' ? 'justify' : al === 'right' || al === 'end' ? 'right' : al === 'center' ? 'center' : 'left'}"` : ''}>${inner || '&nbsp;'}</div>`; }
         case 'r': { const st = runStyle(wchild(el, 'rPr')); const inner = kids(el); return st ? `<span style="${st}">${inner}</span>` : inner; }
         case 't': return tokens(el.textContent);
         case 'tab': return el.parentNode.localName === 'r' ? '<span class="dx-tab"></span>' : '';
@@ -1130,8 +1287,24 @@ function previewHtml(tpl, valueOf) {
     if (ln === 'AlternateContent') { const ch = [...el.children]; const pickEl = ch.find(c => c.localName === 'Choice') || ch.find(c => c.localName === 'Fallback'); return pickEl ? kids(pickEl) : ''; }
     return kids(el);
   }
+  // edit mode: every plain run of text becomes a spot that can be retyped
+  const editPara = el => {
+    const pPr = wchild(el, 'pPr'), jc = pPr && wchild(pPr, 'jc'), al = jc && wattr(jc, 'val'), li = pPr && wchild(pPr, 'numPr'), kinds = edRunKinds(el);
+    let o = '', ri = -1, any = false;
+    for (const c of el.children) {
+      if (c.namespaceURI === W && c.localName === 'r') {
+        ri++;
+        if (kinds[ri] === 'text') { const t = wchild(c, 't').textContent; any = true; o += `<span class="ed" data-r="${ri}" data-o="${esc(t)}" contenteditable="true" spellcheck="false" style="${runStyle(wchild(c, 'rPr'))}">${esc(t)}</span>`; }
+        else if (kinds[ri] === 'field') { const h = node(c); if (h) o += `<span class="fld" title="A place filled from the data">${h}</span>`; }
+        else o += node(c);
+      } else o += node(c);
+    }
+    if (!any) o += '<span class="ed new" data-r="new" data-o="" contenteditable="true" spellcheck="false"></span>';
+    return `<div class="dx-p${li ? ' dx-li' : ''}" data-p="${EP.get(el)}"${al ? ` style="text-align:${al === 'both' ? 'justify' : al === 'right' || al === 'end' ? 'right' : al === 'center' ? 'center' : 'left'}"` : ''}>${o}</div>`;
+  };
   const renderPart = p => {
     part = p; const d = tpl.parts[p] && tpl.parts[p].doc; if (!d) return '';
+    if (opt.edit && p === 'word/document.xml') { [...d.getElementsByTagNameNS(W, 'p')].forEach((e, i) => EP.set(e, i)); [...d.getElementsByTagNameNS(W, 'tbl')].forEach((e, i) => ET.set(e, i)); }
     if (p !== 'word/document.xml') return kids(d.documentElement);
     // a table pinned near the top of the page is drawn first, as Word places it
     const body = d.getElementsByTagNameNS(W, 'body')[0], top = [], flow = [];
@@ -1148,7 +1321,7 @@ function previewHtml(tpl, valueOf) {
   const sects = tpl.parts['word/document.xml'].doc.getElementsByTagNameNS(W, 'sectPr'); const sect = sects[sects.length - 1];
   const ref = kind => { if (!sect) return null; for (const c of sect.children) if (c.localName === kind + 'Reference' && (wattr(c, 'type') || 'default') === 'default') { const t = docRels[c.getAttributeNS(REL, 'id') || c.getAttribute('r:id')]; return t ? 'word/' + t : null; } return null; };
   const hd = ref('header'), ft = ref('footer');
-  return `${hd ? `<div class="dx-head">${renderPart(hd)}</div>` : ''}<div class="dx-body">${renderPart('word/document.xml')}</div>${ft ? `<div class="dx-foot">${renderPart(ft)}</div>` : ''}`;
+  return `${hd ? `<div class="dx-head">${renderPart(hd)}</div>` : ''}<div class="dx-body">${renderPart('word/document.xml')}</div>${late.length ? `<div class="dx-foot">${late.join('')}</div>` : ''}${ft ? `<div class="dx-foot">${renderPart(ft)}</div>` : ''}`;
 }
 
 /* ---------------- writing merged documents ---------------- */
@@ -1200,6 +1373,250 @@ function makeWriter(tpl) {
 const blankVals = tpl => tpl.fields.map(() => '');
 
 /* ================================================================
+   Template editor: change the Word template inside the page.
+   Every change is a small recorded step (an "op"). The template is rebuilt by replaying
+   the steps on the original document, so Undo is just dropping the last step.
+   ================================================================ */
+const RPR_ORDER = ['rStyle', 'rFonts', 'b', 'bCs', 'i', 'iCs', 'caps', 'smallCaps', 'strike', 'dstrike', 'outline', 'shadow', 'emboss', 'imprint', 'noProof', 'snapToGrid', 'vanish', 'webHidden', 'color', 'spacing', 'w', 'kern', 'position', 'sz', 'szCs', 'highlight', 'u', 'effect', 'bdr', 'shd', 'fitText', 'vertAlign', 'rtl', 'cs', 'em', 'lang', 'eastAsianLayout', 'specVanish', 'oMath'];
+const PPR_ORDER = ['pStyle', 'keepNext', 'keepLines', 'pageBreakBefore', 'framePr', 'widowControl', 'numPr', 'suppressLineNumbers', 'pBdr', 'shd', 'tabs', 'suppressAutoHyphens', 'kinsoku', 'wordWrap', 'overflowPunct', 'topLinePunct', 'autoSpaceDE', 'autoSpaceDN', 'bidi', 'adjustRightInd', 'snapToGrid', 'spacing', 'ind', 'contextualSpacing', 'mirrorIndents', 'suppressOverlap', 'jc', 'textDirection', 'textAlignment', 'textboxTightWrap', 'outlineLvl', 'divId', 'cnfStyle', 'rPr', 'sectPr', 'pPrChange'];
+const TCPR_ORDER = ['cnfStyle', 'tcW', 'gridSpan', 'hMerge', 'vMerge', 'tcBorders', 'shd', 'noWrap', 'tcMar', 'textDirection', 'tcFitText', 'vAlign', 'hideMark'];
+const wEl = (doc, name) => doc.createElementNS(W, 'w:' + name);
+const wSet = (el, name, v) => el.setAttributeNS(W, 'w:' + name, v);
+/** Put (or remove, when attrs is null) a property element at its proper place in a properties block. */
+function setProp(parent, order, name, attrs) {
+  const old = wchild(parent, name); if (old) parent.removeChild(old);
+  if (attrs === null) return;
+  const el = wEl(parent.ownerDocument, name); for (const [k, v] of Object.entries(attrs)) wSet(el, k, v);
+  const rank = order.indexOf(name); let before = null;
+  for (const c of parent.children) { const r = order.indexOf(c.localName); if (r > rank) { before = c; break; } }
+  parent.insertBefore(el, before);
+}
+function ensureProps(el, name) { let pr = wchild(el, name); if (!pr) { pr = wEl(el.ownerDocument, name); el.insertBefore(pr, el.firstChild); } return pr; }
+const edAllP = doc => [...doc.getElementsByTagNameNS(W, 'p')];
+const edAllTbl = doc => [...doc.getElementsByTagNameNS(W, 'tbl')];
+const edRows = tbl => [...tbl.children].filter(c => c.localName === 'tr');
+const edCells = tr => [...tr.children].filter(c => c.localName === 'tc');
+const edRuns = p => [...p.children].filter(c => c.localName === 'r' && c.namespaceURI === W);
+const edSpan = tc => { const pr = wchild(tc, 'tcPr'), gs = pr && wchild(pr, 'gridSpan'); return gs ? (+wattr(gs, 'val') || 1) : 1; };
+/** Which direct runs of a paragraph are plain text a person can retype (not part of a field, picture or tab). */
+function edRunKinds(p) {
+  let depth = 0; const kinds = [];
+  for (const r of edRuns(p)) {
+    const fc = wchild(r, 'fldChar'), type = fc && wattr(fc, 'fldCharType');
+    if (type === 'begin') depth++;
+    const inField = depth > 0 || !!wchild(r, 'instrText');
+    if (type === 'end') depth = Math.max(0, depth - 1);
+    const kids = [...r.children].filter(c => c.localName !== 'rPr');
+    kinds.push(inField ? 'field' : kids.length === 1 && kids[0].localName === 't' && kids[0].namespaceURI === W ? 'text' : 'other');
+  }
+  return kinds;
+}
+const edTextRuns = p => { const k = edRunKinds(p); return edRuns(p).filter((r, i) => k[i] === 'text'); };
+function edClearText(root) {
+  for (const p of [root, ...root.getElementsByTagNameNS(W, 'p')].filter(e => e.localName === 'p')) for (const r of edTextRuns(p)) wchild(r, 't').textContent = '';
+}
+function edFormatRun(r, set) {
+  const rPr = ensureProps(r, 'rPr');
+  if ('b' in set) { setProp(rPr, RPR_ORDER, 'b', set.b ? {} : { val: '0' }); setProp(rPr, RPR_ORDER, 'bCs', set.b ? {} : { val: '0' }); }
+  if ('i' in set) { setProp(rPr, RPR_ORDER, 'i', set.i ? {} : { val: '0' }); setProp(rPr, RPR_ORDER, 'iCs', set.i ? {} : { val: '0' }); }
+  if ('u' in set) setProp(rPr, RPR_ORDER, 'u', { val: set.u ? 'single' : 'none' });
+  if ('sz' in set) { setProp(rPr, RPR_ORDER, 'sz', { val: String(set.sz) }); setProp(rPr, RPR_ORDER, 'szCs', { val: String(set.sz) }); }
+  if ('color' in set) setProp(rPr, RPR_ORDER, 'color', set.color ? { val: set.color } : null);
+}
+function edGridCell(tr, g) { let pos = 0; for (const tc of edCells(tr)) { const s = edSpan(tc); if (g >= pos && g < pos + s) return { tc, start: pos, span: s }; pos += s; } return null; }
+function edRescale(tbl, oldTotal) {
+  const grid = wchild(tbl, 'tblGrid'); if (!grid || !oldTotal) return;
+  const cols = [...grid.children].filter(c => c.localName === 'gridCol'), now = cols.reduce((a, c) => a + (+wattr(c, 'w') || 0), 0); if (!now) return;
+  const f = oldTotal / now; cols.forEach(c => wSet(c, 'w', String(Math.round((+wattr(c, 'w') || 0) * f))));
+  for (const tr of edRows(tbl)) for (const tc of edCells(tr)) { const pr = wchild(tc, 'tcPr'), w = pr && wchild(pr, 'tcW'); if (w && (wattr(w, 'type') || 'dxa') === 'dxa') wSet(w, 'w', String(Math.round((+wattr(w, 'w') || 0) * f))); }
+}
+function applyOp(doc, op) {
+  const P = () => edAllP(doc)[op.p], T = () => edAllTbl(doc)[op.tbl];
+  switch (op.t) {
+    case 'tag': { let n = 0; for (const tbl of edAllTbl(doc)) for (const tr of edRows(tbl)) wSet(tr, 'rsidTr', '7A' + (n++).toString(16).toUpperCase().padStart(6, '0')); break; }
+    case 'text': { const p = P(); if (!p) break; const r = edRuns(p)[op.r], t = r && wchild(r, 't'); if (!t) break; t.textContent = op.v; t.setAttributeNS(XMLNS, 'xml:space', 'preserve'); break; }
+    case 'celltext': { const tbl = T(), tr = tbl && edRows(tbl)[op.r], tc = tr && edCells(tr)[op.c]; if (!tc) break; let done = false; for (const p of tc.getElementsByTagNameNS(W, 'p')) for (const r of edTextRuns(p)) { const t = wchild(r, 't'); t.textContent = done ? '' : op.v; t.setAttributeNS(XMLNS, 'xml:space', 'preserve'); done = true; } if (!done) { const p = tc.getElementsByTagNameNS(W, 'p')[0]; if (p) applyOp(doc, { t: 'ptext', p: edAllP(doc).indexOf(p), v: op.v }); } break; }
+    case 'ptext': { const p = P(); if (!p) break; const r = wEl(doc, 'r'), pPr = wchild(p, 'pPr'), mark = pPr && wchild(pPr, 'rPr'); if (mark) r.appendChild(mark.cloneNode(true)); const t = wEl(doc, 't'); t.setAttributeNS(XMLNS, 'xml:space', 'preserve'); t.textContent = op.v; r.appendChild(t); p.appendChild(r); break; }
+    case 'fmt': {
+      for (const pi of op.ps || [op.p]) {
+        const p = edAllP(doc)[pi]; if (!p) continue;
+        let pos = 0;
+        for (const r of edTextRuns(p)) {
+          const t = wchild(r, 't'), txt0 = t.textContent, s = pos, e = pos + txt0.length; pos = e;
+          if (op.a == null) { edFormatRun(r, op.set); continue; }
+          const a = Math.max(op.a, s), b = Math.min(op.b, e); if (a >= b) continue;
+          if (a === s && b === e) { edFormatRun(r, op.set); continue; }
+          const piece = (text) => { const c = r.cloneNode(true); const ct = wchild(c, 't'); ct.textContent = text; ct.setAttributeNS(XMLNS, 'xml:space', 'preserve'); return c; };
+          const mid = piece(txt0.slice(a - s, b - s)); edFormatRun(mid, op.set);
+          if (a > s) p.insertBefore(piece(txt0.slice(0, a - s)), r);
+          p.insertBefore(mid, r);
+          if (b < e) { t.textContent = txt0.slice(b - s); t.setAttributeNS(XMLNS, 'xml:space', 'preserve'); } else p.removeChild(r);
+        }
+      }
+      break;
+    }
+    case 'jc': for (const pi of op.ps) { const p = edAllP(doc)[pi]; if (p) setProp(ensureProps(p, 'pPr'), PPR_ORDER, 'jc', { val: op.v }); } break;
+    case 'shade': { const tbl = T(), tr = tbl && edRows(tbl)[op.r], tc = tr && edCells(tr)[op.c]; if (tc) setProp(ensureProps(tc, 'tcPr'), TCPR_ORDER, 'shd', op.fill ? { val: 'clear', color: 'auto', fill: op.fill } : null); break; }
+    case 'padd': { const p = P(); if (!p) break; const np = wEl(doc, 'p'), pPr = wchild(p, 'pPr'); if (pPr) { const c = pPr.cloneNode(true), sp = wchild(c, 'sectPr'); if (sp) c.removeChild(sp); np.appendChild(c); } const r = wEl(doc, 'r'), src = edTextRuns(p)[0], rp = src && wchild(src, 'rPr'); if (rp) r.appendChild(rp.cloneNode(true)); const t = wEl(doc, 't'); t.setAttributeNS(XMLNS, 'xml:space', 'preserve'); r.appendChild(t); np.appendChild(r); p.parentNode.insertBefore(np, p.nextSibling); break; }
+    case 'pdel': { const p = P(); if (!p) break; const pPr = wchild(p, 'pPr'), keep = (pPr && wchild(pPr, 'sectPr')) || [...p.parentNode.children].filter(c => c.localName === 'p').length < 2 || p.getElementsByTagNameNS(W, 'drawing').length; if (keep) edClearText(p); else p.parentNode.removeChild(p); break; }
+    case 'rowadd': { const tbl = T(), rows = tbl && edRows(tbl), tr = rows && rows[op.r]; if (!tr) break; const c = tr.cloneNode(true); edClearText(c); if (op.id) wSet(c, 'rsidTr', op.id); for (const tc of edCells(c)) { const pr = wchild(tc, 'tcPr'), vm = pr && wchild(pr, 'vMerge'); if (vm && wattr(vm, 'val') === 'restart') vm.removeAttributeNS(W, 'val'); } tbl.insertBefore(c, op.below ? tr.nextSibling : tr); break; }
+    case 'rowdel': {
+      const tbl = T(), rows = tbl && edRows(tbl), tr = rows && rows[op.r]; if (!tr || rows.length < 2) break;
+      const next = rows[op.r + 1];
+      if (next) edCells(tr).forEach(tc => { const pr = wchild(tc, 'tcPr'), vm = pr && wchild(pr, 'vMerge'); if (!vm || wattr(vm, 'val') !== 'restart') return; let g = 0; for (const c of edCells(tr)) { if (c === tc) break; g += edSpan(c); } const hit = edGridCell(next, g), npr = hit && wchild(hit.tc, 'tcPr'), nvm = npr && wchild(npr, 'vMerge'); if (nvm && wattr(nvm, 'val') !== 'restart') wSet(nvm, 'val', 'restart'); });
+      tbl.removeChild(tr); break;
+    }
+    case 'coladd': case 'coldel': {
+      const tbl = T(); if (!tbl) break;
+      const grid = wchild(tbl, 'tblGrid'), cols = grid ? [...grid.children].filter(c => c.localName === 'gridCol') : [], total = cols.reduce((a, c) => a + (+wattr(c, 'w') || 0), 0);
+      if (op.t === 'coldel' && cols.length < 2) break;
+      const colW = cols[op.g] ? (+wattr(cols[op.g], 'w') || 0) : 0;
+      for (const tr of edRows(tbl)) {
+        const hit = edGridCell(tr, op.g); if (!hit) continue;
+        const pr = ensureProps(hit.tc, 'tcPr'), w = wchild(pr, 'tcW');
+        if (op.t === 'coladd') {
+          if (hit.span > 1) { setProp(pr, TCPR_ORDER, 'gridSpan', { val: String(hit.span + 1) }); if (w) wSet(w, 'w', String((+wattr(w, 'w') || 0) + colW)); }
+          else { const c = hit.tc.cloneNode(true); edClearText(c); tr.insertBefore(c, op.after ? hit.tc.nextSibling : hit.tc); }
+        } else if (hit.span > 1) { setProp(pr, TCPR_ORDER, 'gridSpan', hit.span - 1 > 1 ? { val: String(hit.span - 1) } : null); if (w) wSet(w, 'w', String(Math.max(0, (+wattr(w, 'w') || 0) - colW))); }
+        else if (edCells(tr).length > 1) tr.removeChild(hit.tc);
+      }
+      if (cols[op.g]) { if (op.t === 'coladd') grid.insertBefore(cols[op.g].cloneNode(true), op.after ? cols[op.g].nextSibling : cols[op.g]); else grid.removeChild(cols[op.g]); }
+      edRescale(tbl, total); break;
+    }
+  }
+}
+/** Word often splits one phrase into many pieces. Join neighbouring pieces that look the same, so a phrase is retyped in one go. */
+function edMergeRuns(doc) {
+  for (const pe of [...doc.getElementsByTagNameNS(W, 'proofErr')]) pe.parentNode.removeChild(pe);
+  const ser = new XMLSerializer(), sig = r => { const p = wchild(r, 'rPr'); return p ? ser.serializeToString(p) : ''; };
+  const loud = r => { const p = wchild(r, 'rPr'); return !!p && ['u', 'strike', 'dstrike', 'highlight', 'shd', 'bdr', 'sz', 'vertAlign'].some(n => wchild(p, n)); };
+  for (const p of edAllP(doc)) {
+    const kinds = edRunKinds(p); let prev = null;
+    edRuns(p).forEach((r, i) => {
+      if (kinds[i] !== 'text') { prev = null; return; }
+      if (prev && prev.nextElementSibling === r) {
+        const t = wchild(r, 't');
+        if (sig(prev) === sig(r) || (/^\s*$/.test(t.textContent) && !loud(r))) { const pt = wchild(prev, 't'); pt.textContent += t.textContent; pt.setAttributeNS(XMLNS, 'xml:space', 'preserve'); p.removeChild(r); return; }
+      }
+      prev = r;
+    });
+  }
+}
+function applyOps(doc, ops) {
+  edMergeRuns(doc);
+  for (const op of ops || []) applyOp(doc, op);
+  // a text box is stored twice (new and old format); keep the old copy in step with the edited one
+  for (const ac of [...doc.getElementsByTagNameNS('*', 'AlternateContent')]) {
+    const ch = [...ac.children], a = ch.find(c => c.localName === 'Choice'), b = ch.find(c => c.localName === 'Fallback'); if (!a || !b) continue;
+    const ta = a.getElementsByTagNameNS(W, 'txbxContent'), tb = b.getElementsByTagNameNS(W, 'txbxContent'); if (ta.length !== tb.length) continue;
+    for (let i = 0; i < ta.length; i++) { while (tb[i].firstChild) tb[i].removeChild(tb[i].firstChild); for (const c of ta[i].childNodes) tb[i].appendChild(c.cloneNode(true)); }
+  }
+  return doc;
+}
+
+/* ---------------- on-page editing ---------------- */
+const Ed = {
+  host: null, sel: { p: null, tc: null }, range: null,
+  /** host = { doc(): the template as currently edited, push(op, soft), undo(), reset(), canUndo(), guard(op): string|undefined } */
+  attach(host) { this.host = host; },
+  toolbar() {
+    const sizes = [8, 9, 10, 10.5, 11, 12, 14, 16, 18, 20, 24, 28];
+    const ico = lines => `<svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true">${lines.map(([x, w], i) => `<rect x="${x}" y="${1 + i * 4}" width="${w}" height="2" fill="currentColor"/>`).join('')}</svg>`;
+    return `<div class="edbar" role="toolbar" aria-label="Edit the template">
+      <span class="grp"><button data-ed="b" title="Bold" aria-label="Bold"><b>B</b></button><button data-ed="i" title="Italic" aria-label="Italic"><i>I</i></button><button data-ed="u" title="Underline" aria-label="Underline"><u>U</u></button></span>
+      <span class="grp"><select data-ed="sz" title="Text size" aria-label="Text size"><option value="">Size</option>${sizes.map(s => `<option value="${s * 2}">${s}</option>`).join('')}</select>
+        <label class="swatch" title="Text colour">A<input type="color" data-ed="color" value="#000000" aria-label="Text colour"></label></span>
+      <span class="grp"><button data-ed="jc" data-v="left" title="Align left" aria-label="Align left">${ico([[0, 16], [0, 10], [0, 14]])}</button><button data-ed="jc" data-v="center" title="Centre" aria-label="Centre">${ico([[0, 16], [3, 10], [1, 14]])}</button><button data-ed="jc" data-v="right" title="Align right" aria-label="Align right">${ico([[0, 16], [6, 10], [2, 14]])}</button><button data-ed="jc" data-v="both" title="Justify" aria-label="Justify">${ico([[0, 16], [0, 16], [0, 16]])}</button></span>
+      <span class="grp"><span class="lbl">Line</span><button data-ed="padd" title="New line of text below">Add</button><button data-ed="pdel" title="Delete this line of text">Delete</button></span>
+      <span class="grp tbl"><span class="lbl">Row</span><button data-ed="rowadd" data-v="0" title="Add a row above">Above</button><button data-ed="rowadd" data-v="1" title="Add a row below">Below</button><button data-ed="rowdel" title="Delete this row">Delete</button></span>
+      <span class="grp tbl"><span class="lbl">Column</span><button data-ed="coladd" data-v="0" title="Add a column to the left">Left</button><button data-ed="coladd" data-v="1" title="Add a column to the right">Right</button><button data-ed="coldel" title="Delete this column">Delete</button></span>
+      <span class="grp tbl"><label class="swatch fill" title="Cell shading"><span></span><input type="color" data-ed="shade" value="#d9d9d9" aria-label="Cell shading"></label><button data-ed="noshade" title="Remove cell shading">No fill</button></span>
+      <span class="grp end"><button data-ed="undo" title="Undo the last change" ${this.host && this.host.canUndo() ? '' : 'disabled'}>Undo</button><button data-ed="reset" title="Go back to the template as it was loaded" ${this.host && this.host.canUndo() ? '' : 'disabled'}>Start again</button></span>
+    </div>`;
+  },
+  page() { return $('#edpage'); },
+  mark() {
+    const pg = this.page(); if (!pg) return;
+    $$('.selp,.selc', pg).forEach(e => e.classList.remove('selp', 'selc'));
+    if (this.sel.p != null) { const e = $(`[data-p="${this.sel.p}"]`, pg); if (e) e.classList.add('selp'); }
+    if (this.sel.tc) { const e = $(`[data-tc="${this.sel.tc}"]`, pg); if (e) e.classList.add('selc'); }
+    $$('.edbar .tbl button, .edbar .tbl input').forEach(b => b.disabled = !this.sel.tc);
+  },
+  /** commit the text being typed, if it changed */
+  flush(el) {
+    el = el || (document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('ed') ? document.activeElement : null);
+    if (!el || !el.isConnected) return;
+    const v = el.textContent.replace(/[​\r\n]+/g, ' ').replace(/ /g, ' '), pEl = el.closest('[data-p]'); if (!pEl) return;
+    if (v === (el.dataset.o || '')) return;
+    const p = +pEl.dataset.p;
+    if (el.dataset.r === 'new') { if (!v) return; this.host.push({ t: 'ptext', p, v }, true); el.dataset.r = String(edRuns(edAllP(this.host.doc())[p]).length - 1); el.classList.remove('new'); }
+    else this.host.push({ t: 'text', p, r: +el.dataset.r, v }, true);
+    el.dataset.o = v;
+  },
+  /** where formatting should go: the highlighted text if any, otherwise the whole line or cell */
+  target() {
+    const pg = this.page(), s = window.getSelection();
+    if (s && !s.isCollapsed && pg && pg.contains(s.anchorNode) && pg.contains(s.focusNode)) {
+      const span = n => (n.nodeType === 1 ? n : n.parentElement).closest('.ed'), sa = span(s.anchorNode), sf = span(s.focusNode);
+      const pa = sa && sa.closest('[data-p]'), pf = sf && sf.closest('[data-p]');
+      if (pa && pa === pf) {
+        const spans = $$('.ed', pa).filter(e => e.closest('[data-p]') === pa && e.dataset.r !== 'new');
+        const off = (sp, node, o) => { let n = 0; for (const x of spans) { if (x === sp) break; n += x.textContent.length; } return n + (node.nodeType === 3 ? o : (o ? sp.textContent.length : 0)); };
+        const a = off(sa, s.anchorNode, s.anchorOffset), b = off(sf, s.focusNode, s.focusOffset);
+        if (a !== b) return { ps: [+pa.dataset.p], a: Math.min(a, b), b: Math.max(a, b) };
+      }
+    }
+    if (this.sel.p != null) return { ps: [this.sel.p] };
+    if (this.sel.tc && pg) return { ps: $$('[data-p]', $(`[data-tc="${this.sel.tc}"]`, pg)).map(e => +e.dataset.p) };
+    return null;
+  },
+  isOn(t, prop) {
+    const p = edAllP(this.host.doc())[t.ps[0]]; if (!p) return false;
+    let pos = 0; for (const r of edTextRuns(p)) { const len = wchild(r, 't').textContent.length, s = pos; pos += len; if (t.a != null && s + len <= t.a) continue; const rPr = wchild(r, 'rPr'), e = rPr && wchild(rPr, prop); return !!e && !/^(0|false|none)$/.test(wattr(e, 'val') || ''); }
+    return false;
+  },
+  act(el) {
+    const a = el.dataset.ed, H = this.host; if (!H) return;
+    this.flush();
+    if (a === 'undo') { H.undo(); return; }
+    if (a === 'reset') { if (confirm('Go back to the template as it was loaded? Every change made here is dropped.')) H.reset(); return; }
+    const tc = this.sel.tc ? this.sel.tc.split(':').map(Number) : null, doc = H.doc();
+    const push = op => { const why = H.guard && H.guard(op); if (why) { toast(why); return; } H.push(op, false); };
+    if (['b', 'i', 'u', 'sz', 'color'].includes(a)) {
+      const t = ((a === 'sz' || a === 'color') && this.range) || this.target(); if (!t) { toast('Click a line of text first, or highlight the words to change.'); return; }
+      const set = {};
+      if (a === 'sz') { if (!el.value) return; set.sz = +el.value; el.value = ''; } else if (a === 'color') set.color = el.value.replace('#', '').toUpperCase(); else set[a] = !this.isOn(t, a);
+      push({ t: 'fmt', ps: t.ps, a: t.a, b: t.b, set });
+    } else if (a === 'jc') { const t = this.target(); if (!t) { toast('Click a line of text first.'); return; } push({ t: 'jc', ps: t.ps, v: el.dataset.v }); }
+    else if (a === 'padd' || a === 'pdel') { if (this.sel.p == null) { toast('Click a line of text first.'); return; } push({ t: a, p: this.sel.p }); if (a === 'pdel') this.sel.p = null; else this.sel.p++; }
+    else if (!tc) { toast('Click inside a table cell first.'); }
+    else if (a === 'shade' || a === 'noshade') push({ t: 'shade', tbl: tc[0], r: tc[1], c: tc[2], fill: a === 'shade' ? el.value.replace('#', '').toUpperCase() : null });
+    else if (a === 'rowadd') push({ t: 'rowadd', tbl: tc[0], r: tc[1], below: el.dataset.v === '1', id: '7B' + (Date.now() % 0xFFFFFF).toString(16).toUpperCase().padStart(6, '0') });
+    else if (a === 'rowdel') { push({ t: 'rowdel', tbl: tc[0], r: tc[1] }); this.sel = { p: null, tc: null }; }
+    else if (a === 'coladd' || a === 'coldel') {
+      const tbl = edAllTbl(doc)[tc[0]], tr = tbl && edRows(tbl)[tc[1]], cell = tr && edCells(tr)[tc[2]]; if (!cell) return;
+      let g = 0; for (const c of edCells(tr)) { if (c === cell) break; g += edSpan(c); }
+      push(a === 'coladd' ? { t: 'coladd', tbl: tc[0], g, after: el.dataset.v === '1' } : { t: 'coldel', tbl: tc[0], g }); if (a === 'coldel') this.sel = { p: null, tc: null };
+    }
+  },
+};
+document.addEventListener('focusin', e => { const el = e.target; if (!el.closest || !el.closest('#edpage')) return; const p = el.closest('[data-p]'), tc = el.closest('[data-tc]'); Ed.sel = { p: p ? +p.dataset.p : null, tc: tc ? tc.dataset.tc : null }; Ed.mark(); });
+document.addEventListener('focusout', e => { if (e.target.classList && e.target.classList.contains('ed')) Ed.flush(e.target); });
+document.addEventListener('mousedown', e => {
+  const b = e.target.closest && e.target.closest('.edbar button'); if (b) { e.preventDefault(); return; }       // keep the highlighted text while a button is pressed
+  const pg = e.target.closest && e.target.closest('#edpage'); if (!pg) return;
+  if (e.target.closest('.ed')) return;
+  const tc = e.target.closest('[data-tc]'), p = e.target.closest('[data-p]');
+  Ed.sel = { p: p ? +p.dataset.p : null, tc: tc ? tc.dataset.tc : null }; Ed.mark();
+  const first = (p || tc) && $('.ed', p || tc); if (first) { e.preventDefault(); first.focus(); }
+});
+document.addEventListener('keydown', e => { if (e.target.classList && e.target.classList.contains('ed')) { if (e.key === 'Enter') { e.preventDefault(); e.target.blur(); } else if ((e.ctrlKey || e.metaKey) && ['b', 'i', 'u'].includes(e.key.toLowerCase())) { e.preventDefault(); const btn = $(`.edbar [data-ed="${e.key.toLowerCase()}"]`); if (btn) Ed.act(btn); } } });
+document.addEventListener('paste', e => { if (e.target.closest && e.target.closest('.ed')) { e.preventDefault(); const t = (e.clipboardData || window.clipboardData).getData('text').replace(/[\r\n]+/g, ' '); document.execCommand('insertText', false, t); } });
+document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('.edbar button[data-ed]'); if (b) Ed.act(b); });
+document.addEventListener('change', e => { const el = e.target; if (el.closest && el.closest('.edbar') && el.dataset.ed) Ed.act(el); });
+document.addEventListener('selectionchange', () => { const pg = Ed.page(), sl = window.getSelection(); if (!pg || !sl || !sl.anchorNode || !pg.contains(sl.anchorNode)) return; const t = sl.isCollapsed ? null : Ed.target(); Ed.range = t && t.a != null ? t : null; });
+
+/* ================================================================
    Interface
    ================================================================ */
 const STORE = 'transcript-builder.v1';
@@ -1207,6 +1624,7 @@ const MASTER_SHEET = 'Y12_Y10_Y11_FINAL';
 const S = {
   sheets: [], files: [], nextId: 1,
   src: { y10: { sheet: null, headerRow: 0, cols: {} }, y11: { sheet: null, headerRow: 0, cols: {} }, ib: { sheet: null, headerRow: 0, cols: {} } },
+  flats: [], suggest: {}, touched: new Set(), tplFiles: null, ops: [], allOps: {},
   cfg: defaultCfg(), result: null, tpl: null, map: {}, texts: {}, savedMap: {}, savedTexts: {},
   step: 1, tab: 'table', q: '', sel: new Set(), selTouched: false, previewId: null, mapMode: 'sample', pq: '', pform: '',
   out: { mode: 'combined', pattern: '{Surname}_{Forename}_{DIA ID}' }, lastDone: '',
@@ -1217,11 +1635,11 @@ S.sheetOf = src => (src && src.sheet != null ? S.sheets.find(s => s.id === src.s
   try {
     const o = JSON.parse(localStorage.getItem(STORE) || 'null'); if (!o) return;
     if (o.cfg && Array.isArray(o.cfg.blocks)) S.cfg = { ...defaultCfg(), ...o.cfg };
-    S.savedMap = o.map || {}; S.savedTexts = o.texts || {}; if (o.out) S.out = { ...S.out, ...o.out };
+    S.savedMap = o.map || {}; S.savedTexts = o.texts || {}; S.allOps = o.ops || {}; if (o.out) S.out = { ...S.out, ...o.out };
   } catch (e) { /* storage unavailable: carry on without remembered settings */ }
 })();
 function save() {
-  try { localStorage.setItem(STORE, JSON.stringify({ cfg: S.cfg, map: { ...S.savedMap, ...S.map }, texts: { ...S.savedTexts, ...S.texts }, out: S.out })); } catch (e) { /* ignore */ }
+  try { if (S.tpl && S.tplFiles) S.allOps[`${S.tpl.name}:${S.tplFiles['word/document.xml'].length}`] = S.ops; localStorage.setItem(STORE, JSON.stringify({ cfg: S.cfg, map: { ...S.savedMap, ...S.map }, texts: { ...S.savedTexts, ...S.texts }, out: S.out, ops: S.allOps })); } catch (e) { /* ignore */ }
 }
 function toast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'alert'); t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 9000); }
 function busy(msg) { let b = $('.busy'); if (!msg) { b && b.remove(); return; } if (!b) { b = document.createElement('div'); b.className = 'busy'; document.body.appendChild(b); } b.textContent = msg; }
@@ -1249,20 +1667,43 @@ async function addFiles(fileList) {
   busy('Working out the sheets'); await tick();
   autoDetect(); recompute(); busy(); render();
 }
+const EMPTY_SRC = () => ({ sheet: null, headerRow: 0, cols: {} });
+const KINDS = ['y10', 'y11', 'ib'];
+const ROLE_LABEL = { '': 'Not used', y10: 'Year 10 register', y11: 'Year 11 register', ib: 'IB MYP results', flat: 'Ready table, one row per student' };
 function removeFile(name) {
   S.sheets = S.sheets.filter(s => s.file !== name); S.files = S.files.filter(x => x !== name);
-  for (const k of ['y10', 'y11', 'ib']) if (!S.sheetOf(S.src[k])) S.src[k] = { sheet: null, headerRow: 0, cols: {} };
+  for (const k of KINDS) if (!S.sheetOf(S.src[k])) S.src[k] = EMPTY_SRC();
+  S.flats = S.flats.filter(f => S.sheetOf(f));
   autoDetect(); recompute(); render();
 }
-function autoDetect() {
-  const taken = new Set();
-  for (const kind of ['y10', 'y11', 'ib']) { const cur = S.src[kind]; if (cur.manual && S.sheetOf(cur)) taken.add(cur.sheet); }
-  for (const kind of ['y10', 'y11', 'ib']) {
-    const cur = S.src[kind]; if (S.sheetOf(cur)) { taken.add(cur.sheet); continue; }
+const roleOf = id => KINDS.find(k => S.src[k].sheet === id) || (S.flats.some(f => f.sheet === id) ? 'flat' : '');
+/** What each sheet looks like. Registers and IB lists are recognised by their headings; otherwise the first table-like sheet is offered as a ready table. */
+function suggestRoles() {
+  const out = {}, det = {}, taken = new Set();
+  for (const kind of KINDS) {
     let best = null;
     for (const sh of S.sheets) { if (taken.has(sh.id)) continue; const d = detectIn(kind, sh); if (d && !d.missing.length && (!best || d.score > best.d.score)) best = { sh, d }; }
-    if (best) { S.src[kind] = { sheet: best.sh.id, headerRow: best.d.headerRow, cols: best.d.cols, manual: false }; taken.add(best.sh.id); }
+    if (best) { out[best.sh.id] = kind; det[kind] = best; taken.add(best.sh.id); }
   }
+  if (!taken.size) { const sh = S.sheets.find(x => x.rows.filter(Boolean).length > 1); if (sh) out[sh.id] = 'flat'; }
+  return { out, det };
+}
+function autoDetect() {
+  const { out, det } = suggestRoles(); S.suggest = out;
+  const inUse = KINDS.some(k => S.sheetOf(S.src[k])) || S.flats.length;
+  for (const kind of KINDS) {
+    if (S.sheetOf(S.src[kind]) || !det[kind] || S.touched.has(det[kind].sh.id) || roleOf(det[kind].sh.id)) continue;
+    S.src[kind] = { sheet: det[kind].sh.id, headerRow: det[kind].d.headerRow, cols: det[kind].d.cols };
+  }
+  if (!inUse) for (const [id, role] of Object.entries(out)) if (role === 'flat' && !S.touched.has(+id)) { const sh = S.sheets.find(x => x.id === +id); if (sh) S.flats.push(makeFlat(sh)); }
+}
+function setRole(id, role) {
+  const sh = S.sheets.find(x => x.id === id); if (!sh) return;
+  for (const k of KINDS) if (S.src[k].sheet === id) S.src[k] = EMPTY_SRC();
+  S.flats = S.flats.filter(f => f.sheet !== id);
+  if (KINDS.includes(role)) { const d = detectIn(role, sh) || { headerRow: 0, cols: {} }; S.src[role] = { sheet: id, headerRow: d.headerRow, cols: d.cols }; }
+  else if (role === 'flat') S.flats.push(makeFlat(sh));
+  S.touched.add(id); S.selTouched = false;
 }
 /** Make sure every block points at a group label that exists in the loaded registers. */
 function reconcileBlocks(res) {
@@ -1291,10 +1732,31 @@ function recompute() {
   autoMap(); save();
 }
 async function setTemplate(file) {
-  const tpl = await loadTemplate(await file.arrayBuffer(), file.name);
+  let tpl = await loadTemplate(await file.arrayBuffer(), file.name);
+  // edits made on the page earlier are kept for this template and put back
+  const saved = S.allOps[`${file.name}:${tpl.files['word/document.xml'].length}`]; let ops = [];
+  if (Array.isArray(saved) && saved.length) { try { tpl = makeTemplate(tpl.files, file.name, saved); ops = saved; } catch (e) { ops = []; } }
   if (S.tpl) for (const u of Object.values(S.tpl.urls)) URL.revokeObjectURL(u);
-  S.tpl = tpl; S.map = {}; S.texts = {}; S.lastDone = '';
+  S.tpl = tpl; S.tplFiles = tpl.files; S.ops = ops; S.map = {}; S.texts = {}; S.lastDone = ''; Ed.sel = { p: null, tc: null };
   autoMap(); save();
+}
+function rebuildTpl() { const old = S.tpl, t = makeTemplate(S.tplFiles, old.name, S.ops); t.urls = old.urls; S.tpl = t; autoMap(); }
+Ed.attach({
+  doc: () => S.tpl.editDoc, canUndo: () => S.ops.length > 0,
+  push(op, soft) {
+    const before = S.tpl.fields.map(f => f.key).join('|'); S.ops.push(op);
+    try { rebuildTpl(); } catch (e) { S.ops.pop(); rebuildTpl(); toast((e.message || e) + ' That change was not kept.'); render(); return; }
+    save(); S.lastDone = '';
+    if (soft && before === S.tpl.fields.map(f => f.key).join('|')) renderRail(); else render();
+  },
+  undo() { S.ops.pop(); rebuildTpl(); save(); render(); },
+  reset() { S.ops = []; rebuildTpl(); save(); render(); },
+});
+async function downloadTemplate() {
+  const t = S.tpl; if (!t) return; Ed.flush();
+  const zip = new JSZip(); for (const [p, data] of Object.entries(S.tplFiles)) if (p !== 'word/document.xml') zip.file(p, data);
+  zip.file('word/document.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' + new XMLSerializer().serializeToString(t.editDoc).replace(/^<\?xml[^>]*\?>\s*/, ''));
+  download(await zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', compression: 'DEFLATE' }), t.name.replace(/\.(docx|dotx)$/i, '') + ' (edited).docx');
 }
 const alnum = s => String(s).toLowerCase().replace(/[^a-z0-9]/g, '');
 function autoMap() {
@@ -1315,20 +1777,26 @@ function fieldValue(f, st) {
   const col = S.colById[m.slice(4)]; if (!col || !st) return '';
   return applySwitches(showValue(col.get(st), col, S.cfg, f.sw && f.sw.date), f.sw);
 }
-const colName = col => col.group === 'Student' || col.group === 'More' ? col.label : `${col.group} · ${col.label}`;
+const colName = col => col.group === 'Student' || col.group === 'More' || (col.id.startsWith('x.') && S.result && S.result.mode === 'flat' && S.result.flats.length < 2) ? col.label : `${col.group} · ${col.label}`;
+const isFlat = () => !!(S.result && S.result.mode === 'flat');
+const docWord = () => isFlat() ? 'document' : 'transcript';
+const rowWord = () => isFlat() ? 'row' : 'student';
+const dataRows = sh => { const k = KINDS.find(k => S.src[k].sheet === sh.id), fl = S.flats.find(f => f.sheet === sh.id); const hr = k ? S.src[k].headerRow : fl ? fl.headerRow : (sh._hr ??= flatHeaderRow(sh)); let n = 0; for (let r = hr + 1; r < sh.rows.length; r++) if (sh.rows[r]) n++; return n; };
+const disp = s => s.forename ? `${s.surname}, ${s.forename}` : (s.surname || s.idText || s.id);
+const fullName = s => `${s.forename} ${s.surname}`.trim() || s.idText || s.id;
 const colShort = col => { const m = /\.(\d)$/.exec(col.id); return m ? `${col.group} ${SLOT_SHORT[+m[1]]}` : /\.label$/.test(col.id) ? `${col.group} label` : col.label; };
 
 /* ---------------- shell ---------------- */
 function stepInfo() {
   const r = S.result, t = S.tpl;
-  const found = ['y10', 'y11', 'ib'].filter(k => S.sheetOf(S.src[k])).length;
+  const found = KINDS.filter(k => S.sheetOf(S.src[k])).length + S.flats.length;
   const warn = r ? r.issues.filter(i => i.sev !== 'info').length : 0;
   const unfilled = t ? t.fields.filter(f => !S.map[f.key]).length : 0;
   return [
-    { t: 'Raw data', s: !S.sheets.length ? 'Add the workbook' : found === 3 ? 'Three sheets found' : `${found} of 3 sheets found`, c: !S.sheets.length ? '' : found === 3 ? 'ok' : 'todo' },
-    { t: 'Process', s: r ? `${plural(r.students.length, 'student')}${warn ? `, ${plural(warn, 'check')} to read` : ''}` : 'Waiting for data', c: r ? (warn ? 'todo' : 'ok') : '' },
+    { t: 'Raw data', s: !S.sheets.length ? 'Add the workbook' : found ? `${plural(found, 'sheet')} in use` : 'Choose the sheets to use', c: !S.sheets.length ? '' : r ? 'ok' : 'todo' },
+    { t: 'Process', s: r ? `${plural(r.students.length, r.mode === 'flat' ? 'row' : 'student')}${warn ? `, ${plural(warn, 'check')} to read` : ''}` : 'Waiting for data', c: r ? (warn ? 'todo' : 'ok') : '' },
     { t: 'Template', s: t ? (unfilled ? `${unfilled} of ${t.fields.length} places not filled` : `${plural(t.fields.length, 'place')} filled`) : 'Add the Word template', c: t ? (unfilled ? 'todo' : 'ok') : '' },
-    { t: 'Create', s: S.lastDone || (r && t ? `${plural(S.sel.size, 'student')} selected` : 'Needs data and a template'), c: S.lastDone ? 'ok' : '' },
+    { t: 'Create', s: S.lastDone || (r && t ? `${plural(S.sel.size, rowWord())} selected` : 'Needs data and a template'), c: S.lastDone ? 'ok' : '' },
   ];
 }
 function renderRail() {
@@ -1356,42 +1824,68 @@ function gradeCandidates(sh, headerRow) {
   return out;
 }
 function viewData() {
+  const hdrOpts = (hdr, sel, none) => `<option value="">${none}</option>` + hdr.map((hd, i) => hd == null || String(hd).trim() === '' ? '' : `<option value="${i}" ${sel === i ? 'selected' : ''}>${colLetter(i)} · ${esc(String(hd).trim())}</option>`).join('');
   const srcPanel = kind => {
-    const def = SOURCES[kind], src = S.src[kind], sh = S.sheetOf(src), reg = S.result && S.result[kind];
-    const hdr = sh ? (sh.rows[src.headerRow] || []) : [];
-    const opts = sel => `<option value="">— not used —</option>` + hdr.map((hd, i) => hd == null ? '' : `<option value="${i}" ${sel === i ? 'selected' : ''}>${colLetter(i)} · ${esc(String(hd).trim())}</option>`).join('');
-    let state = 'Pick the sheet that holds this data';
-    if (sh) {
-      const miss = def.roles.filter(r => r.req && (r.multi ? !(src.cols[r.k] || []).length : src.cols[r.k] == null)).map(r => r.label);
-      state = miss.length ? `Choose a column for: ${miss.join(', ')}` : reg && !reg.rowCount ? 'No rows could be read. Check the heading row and the Student ID column.' : reg ? `${plural(reg.rowCount, 'row')}, ${plural(reg.byId.size, 'student')}` : 'Ready';
-    }
-    const ok = sh && reg && reg.rowCount;
-    const cands = sh ? gradeCandidates(sh, src.headerRow) : new Set();
+    const def = SOURCES[kind], src = S.src[kind], sh = S.sheetOf(src); if (!sh) return '';
+    const reg = S.result && S.result[kind], hdr = sh.rows[src.headerRow] || [];
+    const miss = def.roles.filter(r => r.req && (r.multi ? !(src.cols[r.k] || []).length : src.cols[r.k] == null)).map(r => r.label);
+    const state = miss.length ? `Choose a column for: ${miss.join(', ')}` : reg && !reg.rowCount ? 'No rows could be read. Check the heading row and the Student ID column.' : reg ? `${plural(reg.rowCount, 'row')}, ${plural(reg.byId.size, 'student')}` : kind === 'ib' && !(S.result && S.result.mode === 'registers') ? 'Needs a register to join to' : 'Ready';
+    const ok = reg && reg.rowCount;
+    const cands = gradeCandidates(sh, src.headerRow);
     const multi = def.roles.filter(r => r.multi).map(r => {
       const chosen = new Set(src.cols[r.k] || []);
       const list = [...new Set([...chosen, ...cands])].sort((a, b) => a - b);
       return `<div class="rule">${esc(r.label)}</div><div class="chips">${list.map(i => `<button class="chip" data-act="score" data-kind="${kind}" data-role="${r.k}" data-i="${i}" aria-pressed="${chosen.has(i)}">${esc(String(hdr[i] ?? colLetter(i)).trim())}</button>`).join('') || '<span class="note">No grade columns found in this sheet.</span>'}</div>`;
     }).join('');
-    const single = def.roles.filter(r => !r.multi);
-    const key = single.filter(r => r.req), rest = single.filter(r => !r.req);
-    const fld = r => `<label class="field"><span>${esc(r.label)}</span><select data-act="col" data-kind="${kind}" data-role="${r.k}">${opts(src.cols[r.k])}</select></label>`;
+    const single = def.roles.filter(r => !r.multi), key = single.filter(r => r.req), rest = single.filter(r => !r.req);
+    const fld = r => `<label class="field"><span>${esc(r.label)}</span><select data-act="col" data-kind="${kind}" data-role="${r.k}">${hdrOpts(hdr, src.cols[r.k], '— not used —')}</select></label>`;
     return `<section class="panel src ${ok ? '' : 'empty'}">
-      <h2>${def.label}</h2><div class="state">${esc(state)}</div>
-      <label class="field"><span>Sheet</span><select data-act="sheet" data-kind="${kind}"><option value="">— choose —</option>${S.sheets.map(s => `<option value="${s.id}" ${sh && sh.id === s.id ? 'selected' : ''}>${esc(s.name.trim())}${S.files.length > 1 ? ' — ' + esc(s.file) : ''}</option>`).join('')}</select></label>
-      ${sh ? `<label class="field"><span>Headings are in row</span><input type="number" min="1" max="50" value="${src.headerRow + 1}" data-act="hrow" data-kind="${kind}"></label>
+      <h2>${def.label}</h2><div class="from">${esc(sh.name.trim())}</div><div class="state">${esc(state)}</div>
+      <label class="field"><span>Headings are in row</span><input type="number" min="1" max="50" value="${src.headerRow + 1}" data-act="hrow" data-kind="${kind}"></label>
       ${key.map(fld).join('')}${multi}
-      <details class="cols"><summary>Other columns read from this sheet (${rest.filter(r => src.cols[r.k] != null).length} of ${rest.length} found)</summary>${rest.map(fld).join('')}</details>` : `<p class="note">${def.hint}</p>`}
+      <details class="cols"><summary>Other columns read from this sheet (${rest.filter(r => src.cols[r.k] != null).length} of ${rest.length} found)</summary>${rest.map(fld).join('')}</details>
     </section>`;
   };
+  const anyReg = !!(S.sheetOf(S.src.y10) || S.sheetOf(S.src.y11));
+  const flatPanel = (fl, n) => {
+    const sh = S.sheetOf(fl); if (!sh) return '';
+    const f = S.result && S.result.flats && S.result.flats.find(x => x.sheetId === sh.id), hdr = sh.rows[fl.headerRow] || [], skip = new Set(fl.skip || []);
+    const all = hdr.map((hd, i) => ({ hd, i })).filter(x => x.hd != null && String(x.hd).trim() !== '');
+    const main = !anyReg && n === 0;
+    const matched = f && S.result ? S.result.students.filter(s => s.x && s.x[sh.id]).length : 0;
+    const needKey = fl.key == null && !main;
+    const state = !f ? 'Ready' : needKey ? 'Choose the ID column so rows can be matched' : main ? `${plural(f.recs.length, 'row')}, ${plural(f.cols.length, 'column')}` : `${plural(f.cols.length, 'column')} added, ${matched} of ${S.result.students.length} ${S.result.mode === 'flat' ? 'rows' : 'students'} matched`;
+    return `<section class="panel src flat ${needKey ? 'empty' : ''}">
+      <h2>${main ? 'Main table' : 'Extra columns'}</h2><div class="from">${esc(sh.name.trim())}</div><div class="state">${esc(state)}</div>
+      <p class="note">${main ? 'Each row becomes one document. Every column can be placed in the template.' : 'Its columns are added to each ' + (anyReg ? 'student' : 'row of the main table') + ' with the same ID.'}</p>
+      <label class="field"><span>Headings are in row</span><input type="number" min="1" max="50" value="${fl.headerRow + 1}" data-act="fhrow" data-sheet="${sh.id}"></label>
+      <label class="field"><span>${main ? 'ID column' : 'Match rows by'}</span><select data-act="fkey" data-sheet="${sh.id}">${hdrOpts(hdr, fl.key, main ? '— none, use the rows in order —' : '— choose the ID column —')}</select></label>
+      ${!anyReg && n > 0 ? `<button class="btn small" data-act="fmain" data-sheet="${sh.id}">Make this the main table</button>` : ''}
+      <details class="cols"><summary>Columns taken (${all.length - all.filter(x => skip.has(x.i)).length} of ${all.length})</summary>
+        <div class="bar" style="margin:8px 0"><button class="btn small" data-act="fall" data-sheet="${sh.id}">Take all</button><button class="btn small" data-act="fnone" data-sheet="${sh.id}">Take none</button></div>
+        <div class="chips">${all.map(x => `<button class="chip" data-act="fcol" data-sheet="${sh.id}" data-i="${x.i}" aria-pressed="${!skip.has(x.i)}">${esc(String(x.hd).trim())}</button>`).join('')}</div></details>
+    </section>`;
+  };
+  const sheetRows = S.sheets.map(sh => {
+    const role = roleOf(sh.id), sug = S.suggest[sh.id] || '';
+    return `<tr class="${role ? 'on' : ''}"><td><b>${esc(sh.name.trim())}</b>${S.files.length > 1 ? `<small>${esc(sh.file)}</small>` : ''}</td><td class="num">${dataRows(sh).toLocaleString()}</td>
+      <td><select data-act="role" data-sheet="${sh.id}" aria-label="Use ${esc(sh.name.trim())} as">${['', 'y10', 'y11', 'ib', 'flat'].map(k => `<option value="${k}" ${role === k ? 'selected' : ''}>${ROLE_LABEL[k]}</option>`).join('')}</select></td>
+      <td>${sug && sug === role ? '<span class="tag">suggested</span>' : sug ? `<button class="link" data-act="usesug" data-sheet="${sh.id}">Suggested: ${ROLE_LABEL[sug].split(',')[0]}</button>` : role ? '<span class="tag p">your choice</span>' : ''}</td></tr>`;
+  }).join('');
+  const panels = KINDS.map(srcPanel).join('') + S.flats.map(flatPanel).join('');
+  const need = !S.result ? (KINDS.some(k => S.sheetOf(S.src[k])) || S.flats.length ? 'Finish the settings above to continue' : 'Choose at least one sheet to use') : '';
   return `<h1>Raw data</h1>
-  <p class="lede">Add the Excel workbook with the Year 10 register, the Year 11 register and the IB MYP results. The three sheets can sit in one workbook or in separate files.</p>
+  <p class="lede">Add an Excel workbook. Each sheet gets a suggested use that you can change, so you take only the sheets you need: all three, two of them, or one ready-made table.</p>
   <div class="drop" data-drop>
     <div><div class="big">Drop the workbook here</div><div class="sub">Excel .xlsx files. The Word template can be dropped here too.</div></div>
     <button class="btn primary" data-act="pick">Choose files</button>
   </div>
   <div class="files">${S.files.map(f => `<span class="file">${esc(f)}<button data-act="rmfile" data-name="${esc(f)}" aria-label="Remove ${esc(f)}">×</button></span>`).join('')}${S.tpl ? `<span class="file doc">${esc(S.tpl.name)}</span>` : ''}</div>
-  ${S.sheets.length ? `<div class="sources">${srcPanel('y10')}${srcPanel('y11')}${srcPanel('ib')}</div>
-  <div class="bar"><button class="btn primary" data-act="step" data-n="2" ${S.result ? '' : 'disabled'}>Continue to Process</button><span class="stat">${S.result ? `<b>${S.result.students.length}</b> students combined from the sheets above` : 'Choose the sheets above to continue'}</span></div>` : ''}`;
+  ${S.sheets.length ? `<h2 style="margin-top:24px">Sheets in this data</h2>
+  <p class="note">Registers and IB results are combined into one row per student. A ready table is used as it is; next to registers, its columns are added to each student by ID.</p>
+  <div class="panel sheets"><table><thead><tr><th>Sheet</th><th class="num">Rows</th><th>Use as</th><th></th></tr></thead><tbody>${sheetRows}</tbody></table></div>
+  ${panels ? `<div class="sources">${panels}</div>` : ''}
+  <div class="bar" style="margin-top:18px"><button class="btn primary" data-act="step" data-n="2" ${S.result ? '' : 'disabled'}>Continue to Process</button><span class="stat">${S.result ? `<b>${S.result.students.length}</b> ${S.result.mode === 'flat' ? 'rows ready' : 'students combined'} from ${plural(KINDS.filter(k => S.sheetOf(S.src[k])).length + S.flats.length, 'sheet')}` : need}</span></div>` : ''}`;
 }
 
 /* ---------------- step 2: process ---------------- */
@@ -1400,7 +1894,7 @@ function viewProcess() {
   if (!r) return `<h1>Process</h1><div class="empty-state"><b>No data yet.</b> Add the workbook in step 1 and the combined table appears here.<p><button class="btn primary" data-act="step" data-n="1">Go to Raw data</button></p></div>`;
   const nCheck = r.issues.filter(i => i.sev !== 'info').length;
   const tabs = `<div class="tabs" role="tablist">${[['table', 'Combined table'], ['rules', 'Rules'], ['checks', 'Checks']].map(([k, l]) => `<button role="tab" data-act="tab" data-tab="${k}" aria-selected="${S.tab === k}">${l}${k === 'checks' && nCheck ? `<span class="count">${nCheck}</span>` : ''}</button>`).join('')}</div>`;
-  const head = `<h1>Process</h1><p class="lede">One row per student, built from the three sheets the same way the ${MASTER_SHEET} sheet is built by hand. Change the rules if a cohort is set up differently.</p>`;
+  const head = `<h1>Process</h1><p class="lede">${r.mode === 'flat' ? 'The ready table, one row per document. Nothing is recalculated; every column here can be placed in the template.' : `One row per student, built from the sheets chosen in Raw data the same way the ${MASTER_SHEET} sheet is built by hand. Change the rules if a cohort is set up differently.`}</p>`;
   if (S.tab === 'rules') return head + tabs + viewRules(r);
   if (S.tab === 'checks') return head + tabs + viewChecks(r);
   const cols = r.columns, groups = [];
@@ -1408,17 +1902,17 @@ function viewProcess() {
   const cls = []; { let k = 0, prev = null; for (const c of cols) { if (c.group !== prev) { k++; prev = c.group; } cls.push(k % 2 ? 'g1' : ''); } }
   const short = c => { const m = /\.(\d)$/.exec(c.id); return m ? SLOT_SHORT[+m[1]] : /\.label$/.test(c.id) ? 'Label' : c.label; };
   const cell = (v, c, k) => v === '' || v == null ? `<td class="none ${k}">·</td>` : v instanceof Date ? `<td class="${k}">${fmtDate(v, 'DD/MM/YYYY')}</td>` : `<td class="${c.type === 'grade' ? 'n ' : ''}${k}">${esc(v)}</td>`;
-  const body = r.students.map(s => `<tr data-s="${esc((s.name + ' ' + s.forename + ' ' + s.surname + ' ' + s.id + ' ' + s.form + ' ' + s.curForm).toLowerCase())}"><td class="stick">${esc(s.surname)}, ${esc(s.forename)}${s.flagCount ? '<span class="dot" title="Has checks to read"></span>' : ''}<small>${esc(s.id)}</small></td>${cols.map((c, i) => cell(c.get(s), c, cls[i])).join('')}</tr>`).join('');
+  const body = r.students.map(s => `<tr data-s="${esc((s.name + ' ' + s.forename + ' ' + s.surname + ' ' + s.idText + ' ' + s.form + ' ' + s.curForm).toLowerCase())}"><td class="stick">${esc(disp(s))}${s.flagCount ? '<span class="dot" title="Has checks to read"></span>' : ''}<small>${esc(s.idText === disp(s) ? '' : s.idText)}</small></td>${cols.map((c, i) => cell(c.get(s), c, cls[i])).join('')}</tr>`).join('');
   return head + tabs + `<div class="bar">
       <input type="search" placeholder="Find a student, ID or form" value="${esc(S.q)}" data-act="q" aria-label="Find a student" style="width:260px">
-      <span class="stat"><b id="shown">${r.students.length}</b> of <b>${r.students.length}</b> students, <b>${cols.length}</b> columns</span><span class="grow"></span>
+      <span class="stat"><b id="shown">${r.students.length}</b> of <b>${r.students.length}</b> ${r.mode === 'flat' ? 'rows' : 'students'}, <b>${cols.length}</b> columns</span><span class="grow"></span>
       <button class="btn data" data-act="xlsx">Download as Excel</button>
     </div>
     <div class="gridwrap"><table class="grid"><thead>
       <tr><th class="stick" rowspan="2">Student</th>${groups.map((g, i) => `<th colspan="${g.n}" class="${i % 2 ? '' : 'g1'}">${esc(g.name)}</th>`).join('')}</tr>
       <tr>${cols.map((c, i) => `<th class="${cls[i]}" title="Excel heading: ${esc(c.header)}">${esc(short(c))}</th>`).join('')}</tr>
     </thead><tbody id="gridbody">${body}</tbody></table></div>
-    <p class="note" style="margin-top:8px">A dot means no value. Hover a heading to see the Excel column name. The Excel download keeps the same headings as ${MASTER_SHEET}, so Word's own mail merge still works with it.</p>`;
+    <p class="note" style="margin-top:8px">A dot means no value. Hover a heading to see the Excel column name.${r.mode === 'flat' ? '' : ` The Excel download keeps the same headings as ${MASTER_SHEET}, so Word's own mail merge still works with it.`}</p>`;
 }
 function filterGrid() {
   const q = S.q.trim().toLowerCase(); let n = 0;
@@ -1427,14 +1921,19 @@ function filterGrid() {
 }
 function viewRules(r) {
   const cfg = S.cfg;
+  const sortSel = `<label class="field" style="max-width:420px;margin-top:10px"><span>Order</span><select data-act="cfg" data-k="sort">${[['register', r.mode === 'flat' ? 'As in the sheet' : 'As in the register'], ['surname', 'Surname'], ['form', 'Form, then surname'], ['id', 'Student ID']].map(([k, l]) => `<option value="${k}" ${cfg.sort === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>`;
+  const flatOptions = `<label class="field" style="max-width:520px"><span>Dates print as</span><select data-act="cfg" data-k="dateFormat">${DATE_FORMATS.map(([k, l]) => `<option value="${k}" ${cfg.dateFormat === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+    <label class="field" style="max-width:520px"><span>Student ID starts with</span><input type="text" data-act="cfg" data-k="idPrefix" value="${esc(cfg.idPrefix)}"></label>
+    <p class="note">Only used to match rows between sheets: an ID stored without this prefix is treated as if it had it, so 13252 and DIA13252 are the same student. Clear it if your IDs have no prefix.</p>`;
+  if (r.mode === 'flat') return `<div class="rules"><section><h2>Rows</h2><p class="note">A ready table is used as it is, so there are no subject blocks or levels to work out. To build the table from registers instead, change how the sheets are used in <button class="link" data-act="step" data-n="1">Raw data</button>.</p>${sortSel}</section><section><h2>Options</h2>${flatOptions}</section></div>`;
   const roster = [['either', 'Everyone in either register', r.counts.either], ['y10', `Year 10 register only, as ${MASTER_SHEET} does now`, r.counts.y10], ['both', 'Only students in both registers', r.counts.both], ['y11', 'Year 11 register only', r.counts.y11]];
   const gsel = (kind, b, i) => { const reg = r[kind]; if (!reg) return '<span class="note">no register</span>'; return `<select data-act="bgroup" data-kind="${kind}" data-i="${i}"><option value="">— none —</option>${[...reg.groups].map(([g, v]) => `<option value="${esc(g)}" ${b[kind] === g ? 'selected' : ''}>${esc(v.label)} (${v.count})</option>`).join('')}</select>`; };
-  const hdrName = (kind, role) => { const src = S.src[kind], sh = S.sheetOf(src); if (!sh) return ''; const hdr = sh.rows[src.headerRow] || []; const v = src.cols[role]; return (Array.isArray(v) ? v : v == null ? [] : [v]).map(i => `<span class="tag">${esc(String(hdr[i]).trim())}</span>`).join(' ') || '<span class="tag x">not set</span>'; };
+  const hdrName = (kind, role) => { const src = S.src[kind], sh = S.sheetOf(src); if (!sh) return '<span class="tag x">sheet not in use</span>'; const hdr = sh.rows[src.headerRow] || []; const v = src.cols[role]; return (Array.isArray(v) ? v : v == null ? [] : [v]).map(i => `<span class="tag">${esc(String(hdr[i]).trim())}</span>`).join(' ') || '<span class="tag x">not set</span>'; };
   const ibOpts = cur => `<option value="">— no IB grade —</option>` + [...r.ib.subjects].sort((a, b) => a[1].label.localeCompare(b[1].label)).map(([k, v]) => `<option value="${esc(k)}" ${cur === k ? 'selected' : ''}>${esc(v.label)}</option>`).join('');
   return `<div class="rules">
   <section><h2>Who gets a transcript</h2>
     ${roster.map(([k, l, n]) => `<label class="opt"><input type="radio" name="roster" data-act="roster" value="${k}" ${cfg.roster === k ? 'checked' : ''}><span>${l} <b>(${n})</b></span></label>`).join('')}
-    <label class="field" style="max-width:420px;margin-top:10px"><span>Order</span><select data-act="cfg" data-k="sort">${[['register', 'As in the register'], ['surname', 'Surname'], ['form', 'Form, then surname'], ['id', 'Student ID']].map(([k, l]) => `<option value="${k}" ${cfg.sort === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+    ${sortSel}
   </section>
   <section><h2>Subject blocks</h2>
     <p class="note">Each block is one row of the transcript. A register row lands in a block when its Group matches.</p>
@@ -1453,9 +1952,9 @@ function viewRules(r) {
   <section><h2>Subject names</h2>
     <div class="two">
       <div><p class="note">The IB results use different names for some Year 11 subjects. Each Year 11 subject reads its June level from the IB subject chosen here.</p>
-        ${r.ib ? `<table><tr><th>Year 11 register</th><th>IB results</th><th>Students</th></tr>${[...r.y11Subjects].sort((a, b) => a[1].label.localeCompare(b[1].label)).map(([k, v]) => `<tr><td>${esc(v.label)}</td><td><select data-act="alias" data-k="${esc(k)}">${ibOpts(r.aliasOf[k])}</select></td><td>${v.count}</td></tr>`).join('')}</table>` : '<p class="note">Add the IB results sheet to set this up.</p>'}</div>
-      <div><p class="note">Year 10 uses subject codes. This is the name each code carries in Year 11, used to spot subject changes and to name a subject when a student has no Year 11 row.</p>
-        <table><tr><th>Year 10 code</th><th>Name</th><th>Students</th></tr>${[...r.y10Codes].sort((a, b) => a[1].label.localeCompare(b[1].label)).map(([k, v]) => `<tr><td>${esc(v.label)}</td><td><input type="text" data-act="y10name" data-k="${esc(k)}" value="${esc(r.y10name(v.label))}"></td><td>${v.count}</td></tr>`).join('')}</table></div>
+        ${r.ib && r.y11 ? `<table><tr><th>Year 11 register</th><th>IB results</th><th>Students</th></tr>${[...r.y11Subjects].sort((a, b) => a[1].label.localeCompare(b[1].label)).map(([k, v]) => `<tr><td>${esc(v.label)}</td><td><select data-act="alias" data-k="${esc(k)}">${ibOpts(r.aliasOf[k])}</select></td><td>${v.count}</td></tr>`).join('')}</table>` : '<p class="note">This needs both the Year 11 register and the IB results. Without them the Year 11 June level is left out.</p>'}</div>
+      ${r.y10 ? `<div><p class="note">Year 10 uses subject codes. This is the name each code carries in Year 11, used to spot subject changes and to name a subject when a student has no Year 11 row.</p>
+        <table><tr><th>Year 10 code</th><th>Name</th><th>Students</th></tr>${[...r.y10Codes].sort((a, b) => a[1].label.localeCompare(b[1].label)).map(([k, v]) => `<tr><td>${esc(v.label)}</td><td><input type="text" data-act="y10name" data-k="${esc(k)}" value="${esc(r.y10name(v.label))}"></td><td>${v.count}</td></tr>`).join('')}</table></div>` : ''}
     </div>
   </section>
   <section><h2>Options</h2>
@@ -1501,23 +2000,26 @@ function viewTemplate() {
   }).join('');
   const hf = t.fields.some(f => f.part !== 'word/document.xml');
   return `<h1>Template</h1>
-  <p class="lede">${esc(t.name)} has ${plural(t.fields.length, 'place')} for student data. Each one was matched to a column by its field name; change any of them here.</p>
+  <p class="lede">${esc(t.name)} has ${plural(t.fields.length, 'place')} for student data, each matched to a column by its field name. Change any of them on the left, or choose "Edit the template" to retype text, format it, and add or remove rows and columns without opening Word.</p>
   ${!t.fields.length ? `<div class="banner">No mail merge fields or {{placeholders}} were found in this document. Add them in Word (Mailings › Insert Merge Field, or type {{Forename}}) and load it again.</div>` : ''}
   ${unfilled ? `<div class="banner">${plural(unfilled, 'place has', 'places have')} no column yet and will print empty.</div>` : ''}
   ${t.other ? `<div class="banner">This template also has ${plural(t.other, 'calculated field')} (IF, NEXT and similar). They are left as they are; press F9 in Word to refresh them.</div>` : ''}
   ${hf ? `<div class="banner">Some places are in the page header or footer. They are filled when each student gets a separate file, and left empty in one combined file.</div>` : ''}
   <div class="split">
-    <div><div class="bar"><span class="stat"><b>${t.fields.length - unfilled}</b> of <b>${t.fields.length}</b> filled</span><span class="grow"></span><button class="btn small" data-act="rematch">Match again by name</button><button class="btn small" data-act="pick">Replace template</button></div>
+    <div><div class="bar"><span class="stat"><b>${t.fields.length - unfilled}</b> of <b>${t.fields.length}</b> filled</span><span class="grow"></span><button class="btn small" data-act="rematch">Match again by name</button><button class="btn small" data-act="pick">Replace template</button><button class="btn small" data-act="dltpl">Download the edited template</button></div>
       <div class="maplist">${rows}</div></div>
-    <div class="pv"><div class="pv-bar"><div class="seg"><button data-act="mapmode" data-m="sample" aria-pressed="${S.mapMode === 'sample'}">One student</button><button data-act="mapmode" data-m="names" aria-pressed="${S.mapMode === 'names'}">Column names</button></div>
-      ${S.result && S.mapMode === 'sample' ? `<select data-act="pvstudent" aria-label="Student shown">${S.result.students.map(s => `<option value="${esc(s.id)}" ${s.id === S.previewId ? 'selected' : ''}>${esc(s.surname)}, ${esc(s.forename)}</option>`).join('')}</select>` : ''}
-      <span class="stat">Content preview. Layout and fonts come from Word.</span></div>
-      <div class="pv-scroll"><div class="page" id="page"></div></div></div>
+    <div class="pv ${S.mapMode === 'edit' ? 'editing' : ''}"><div class="pv-bar"><div class="seg"><button data-act="mapmode" data-m="edit" aria-pressed="${S.mapMode === 'edit'}">Edit the template</button><button data-act="mapmode" data-m="sample" aria-pressed="${S.mapMode === 'sample'}">One student</button><button data-act="mapmode" data-m="names" aria-pressed="${S.mapMode === 'names'}">Column names</button></div>
+      ${S.result && S.mapMode === 'sample' ? `<select data-act="pvstudent" aria-label="Student shown">${S.result.students.map(s => `<option value="${esc(s.id)}" ${s.id === S.previewId ? 'selected' : ''}>${esc(disp(s))}</option>`).join('')}</select>` : ''}
+      ${S.mapMode === 'edit' ? '' : '<span class="stat">Content preview. Layout and fonts come from Word.</span>'}</div>
+      ${S.mapMode === 'edit' ? Ed.toolbar() + '<p class="note" style="margin:6px 0">Click any text and type. Blue boxes are places filled from the data; choose what fills them on the left. To add a new place, type its column name in double braces, for example {{Forename}}.</p>' : ''}
+      <div class="pv-scroll"><div class="page ${S.mapMode === 'edit' ? 'edit' : ''}" id="${S.mapMode === 'edit' ? 'edpage' : 'page'}"></div></div></div>
   </div>
   <div class="bar" style="margin-top:18px"><button class="btn primary" data-act="step" data-n="4" ${S.result ? '' : 'disabled'}>Continue to Create</button></div>`;
 }
 const previewStudent = () => S.result ? (S.result.students.find(s => s.id === S.previewId) || S.result.students[0] || null) : null;
 function paintPreview() {
+  const ed = $('#edpage');
+  if (ed && S.tpl) { const t0 = S.tpl, t2 = Object.create(t0); t2.parts = { ...t0.parts, 'word/document.xml': { doc: t0.editDoc } }; ed.innerHTML = previewHtml(t2, () => '', { edit: true }); Ed.mark(); return; }
   const page = $('#page'); if (!page || !S.tpl) return;
   const st = previewStudent(), t = S.tpl;
   const names = S.step === 3 && (S.mapMode === 'names' || !st);
@@ -1535,10 +2037,10 @@ function viewCreate() {
   if (!r || !t) return `<h1>Create</h1><div class="empty-state"><b>${!r ? 'No data yet.' : 'No template yet.'}</b> ${!r ? 'Add the workbook in step 1.' : 'Add the Word template in step 3.'}<p><button class="btn primary" data-act="step" data-n="${!r ? 1 : 3}">${!r ? 'Go to Raw data' : 'Go to Template'}</button></p></div>`;
   const forms = [...new Set(r.students.map(s => s.curForm || s.y11Form || s.form).filter(Boolean))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
   const st = previewStudent();
-  const people = r.students.map(s => { const fm = s.curForm || s.y11Form || s.form; return `<li data-id="${esc(s.id)}" data-form="${esc(fm)}" data-s="${esc((s.name + ' ' + s.forename + ' ' + s.surname + ' ' + s.id).toLowerCase())}" class="${s.id === S.previewId ? 'cur' : ''}"><input type="checkbox" data-act="sel" data-id="${esc(s.id)}" ${S.sel.has(s.id) ? 'checked' : ''} aria-label="Include ${esc(s.name)}"><span>${esc(s.surname)}, ${esc(s.forename)}${s.flagCount ? '<span class="dot" title="Has checks to read"></span>' : ''}</span><small>${esc(fm)}</small></li>`; }).join('');
+  const people = r.students.map(s => { const fm = s.curForm || s.y11Form || s.form; return `<li data-id="${esc(s.id)}" data-form="${esc(fm)}" data-s="${esc((s.name + ' ' + s.forename + ' ' + s.surname + ' ' + s.idText).toLowerCase())}" class="${s.id === S.previewId ? 'cur' : ''}"><input type="checkbox" data-act="sel" data-id="${esc(s.id)}" ${S.sel.has(s.id) ? 'checked' : ''} aria-label="Include ${esc(disp(s))}"><span>${esc(disp(s))}${s.flagCount ? '<span class="dot" title="Has checks to read"></span>' : ''}</span><small>${esc(fm)}</small></li>`; }).join('');
   const unfilled = t.fields.filter(f => !S.map[f.key]).length;
   return `<h1>Create</h1>
-  <p class="lede">Tick the students who need a transcript, look one over, then create the Word files.</p>
+  <p class="lede">Tick the ${r.mode === 'flat' ? 'rows' : 'students'} that need a document, look one over, then create the Word files.</p>
   <div class="gen">
     <div class="people"><div class="top">
       <div class="row"><input type="search" placeholder="Find a student" value="${esc(S.pq)}" data-act="pq" aria-label="Find a student"><select data-act="pform" aria-label="Form"><option value="">All forms</option>${forms.map(f => `<option ${S.pform === f ? 'selected' : ''}>${esc(f)}</option>`).join('')}</select></div>
@@ -1546,15 +2048,15 @@ function viewCreate() {
     </div><ul id="people">${people}</ul></div>
     <div>
       <div class="out">
-        <div class="row"><label><input type="radio" name="mode" data-act="mode" value="combined" ${S.out.mode === 'combined' ? 'checked' : ''}> One Word file, a page per student</label><label><input type="radio" name="mode" data-act="mode" value="separate" ${S.out.mode === 'separate' ? 'checked' : ''}> A separate Word file per student, in a zip</label></div>
+        <div class="row"><label><input type="radio" name="mode" data-act="mode" value="combined" ${S.out.mode === 'combined' ? 'checked' : ''}> One Word file, a page per ${rowWord()}</label><label><input type="radio" name="mode" data-act="mode" value="separate" ${S.out.mode === 'separate' ? 'checked' : ''}> A separate Word file per ${rowWord()}, in a zip</label></div>
         ${S.out.mode === 'separate' ? `<div class="row"><label>File name <input type="text" data-act="pattern" value="${esc(S.out.pattern)}" style="width:300px"></label><span class="stat">Use any column in braces, e.g. {Surname} {Forename} {DIA ID} {Current Form}</span></div>` : ''}
         ${unfilled ? `<div class="banner" style="margin:4px 0 10px">${plural(unfilled, 'place', 'places')} in the template ${unfilled === 1 ? 'has' : 'have'} no column and will print empty. <button class="link" data-act="step" data-n="3">Review the template</button></div>` : ''}
-        <div class="row" style="margin:0"><button class="btn doc" data-act="create" id="createbtn" ${S.sel.size ? '' : 'disabled'}>Create ${plural(S.sel.size, 'transcript')}</button>
-          ${st ? `<button class="btn" data-act="createone">Only ${esc(st.forename)} ${esc(st.surname)}</button>` : ''}</div>
+        <div class="row" style="margin:0"><button class="btn doc" data-act="create" id="createbtn" ${S.sel.size ? '' : 'disabled'}>Create ${plural(S.sel.size, docWord())}</button>
+          ${st ? `<button class="btn" data-act="createone">Only ${esc(fullName(st))}</button>` : ''}</div>
         <div class="progress" id="prog" hidden><i></i></div>
         <div class="done" id="done" ${S.lastDone ? '' : 'hidden'}>${esc(S.lastDone)}</div>
       </div>
-      <div class="pv" style="position:static"><div class="pv-bar"><span class="stat">Showing <b>${st ? esc(st.forename + ' ' + st.surname) : ''}</b>. Click a name to see another. Content preview; layout and fonts come from Word.</span></div>
+      <div class="pv" style="position:static"><div class="pv-bar"><span class="stat">Showing <b>${st ? esc(fullName(st)) : ''}</b>. Click a name to see another. Content preview; layout and fonts come from Word.</span></div>
       <div class="pv-scroll"><div class="page" id="page"></div></div></div>
     </div>
   </div>`;
@@ -1566,7 +2068,7 @@ function filterPeople() {
 function fileNameFor(st, pattern) {
   const cols = S.result.columns;
   const name = pattern.replace(/\{([^{}]+)\}/g, (m, k) => { const kk = norm(k); const c = cols.find(c => norm(c.header) === kk) || cols.find(c => norm(c.label) === kk) || cols.find(c => alnum(c.header) === alnum(k)); return c ? showValue(c.get(st), c, { ...S.cfg, dateFormat: 'YYYY-MM-DD' }) : ''; });
-  return (name.replace(/[\\/:*?"<>|\u0000-\u001F]/g, ' ').replace(/\s+/g, ' ').trim().replace(/^[_ .-]+|[_ .-]+$/g, '') || st.id).slice(0, 120);
+  return (name.replace(/[\\/:*?"<>|\u0000-\u001F]/g, ' ').replace(/\s+/g, ' ').trim().replace(/_{2,}/g, '_').replace(/^[_ .-]+|[_ .-]+$/g, '') || fullName(st).replace(/[\\/:*?"<>|#]/g, ' ').trim() || 'document').slice(0, 120);
 }
 const valsFor = st => S.tpl.fields.map(f => { const x = xmlText(fieldValue(f, st)); return f.nested ? x.replace(/\n/g, ' ') : x.replace(/\r?\n/g, '</w:t><w:br/><w:t xml:space="preserve">'); });
 async function createDocs(onlyOne) {
@@ -1581,7 +2083,7 @@ async function createDocs(onlyOne) {
     const writer = makeWriter(t);
     let blob, name;
     if (list.length === 1) { blob = await writer.single(valsFor(list[0])); name = `${fileNameFor(list[0], S.out.pattern)}.docx`; }
-    else if (S.out.mode === 'combined') { blob = await writer.combined(list.map(valsFor), setP); name = `${baseName} - ${list.length} students.docx`; }
+    else if (S.out.mode === 'combined') { blob = await writer.combined(list.map(valsFor), setP); name = `${baseName} - ${plural(list.length, rowWord())}.docx`; }
     else {
       const zip = new JSZip(), used = new Map();
       for (let i = 0; i < list.length; i++) {
@@ -1589,10 +2091,10 @@ async function createDocs(onlyOne) {
         zip.file(n + '.docx', await writer.single(valsFor(list[i]), 'uint8array'), { compression: 'STORE' });
         if (i % 4 === 0) { setP(i / list.length * 0.9); await new Promise(res => setTimeout(res)); }
       }
-      blob = await zip.generateAsync({ type: 'blob', mimeType: 'application/zip' }); name = `${baseName} - ${list.length} students.zip`;
+      blob = await zip.generateAsync({ type: 'blob', mimeType: 'application/zip' }); name = `${baseName} - ${plural(list.length, rowWord())}.zip`;
     }
     setP(1); download(blob, name);
-    S.lastDone = `Created ${plural(list.length, 'transcript')}: ${name} (${fmtSize(blob.size)})`;
+    S.lastDone = `Created ${plural(list.length, docWord())}: ${name} (${fmtSize(blob.size)})`;
     if (done) { done.textContent = S.lastDone; done.hidden = false; }
     renderRail();
   } catch (e) { console.error(e); toast('The Word file could not be created: ' + (e.message || e)); }
@@ -1604,10 +2106,10 @@ async function downloadXlsx() {
   const r = S.result; if (!r) return;
   busy('Writing the Excel file'); await tick();
   try {
-    const cols = r.columns, cfg = S.cfg;
+    const cols = r.columns, cfg = S.cfg, reg = r.mode === 'registers';
     const width = c => c.type === 'grade' ? 12 : c.type === 'date' ? 13 : /subject|set|name/i.test(c.label) ? 22 : 16;
     const val = (c, s) => { const v = c.get(s); return v == null ? '' : v; };
-    const master = { name: MASTER_SHEET, header: cols.map(c => c.header), rows: r.students.map(s => cols.map(c => val(c, s))), freezeCols: 4, widths: cols.map(width), textCols: new Set([0, 1]), headerHeight: 62 };
+    const master = { name: reg ? MASTER_SHEET : 'Data', header: cols.map(c => c.header), rows: r.students.map(s => cols.map(c => val(c, s))), freezeCols: reg ? 4 : 1, widths: cols.map(width), textCols: reg ? new Set([0, 1]) : new Set(), headerHeight: 62 };
     const stu = cols.filter(c => c.group === 'Student');
     const by = (slots, heads) => { const hs = stu.map(c => c.header), get = stu.map(c => s => val(c, s)); for (const b of cfg.blocks) slots.forEach((sl, k) => { const c = S.colById[`${b.key}.${sl}`]; hs.push(heads ? heads(b, k) : (c ? c.header : `${b.name} ${SLOT_LABELS[sl]}`)); const o = ['name', 's10', 'set10', 'jan10', 'jun10', 'set11', 'jan11', 'ib'][sl]; get.push(s => { const v = sl === 0 ? s.blocks[b.key].s11 : s.blocks[b.key][o]; return v == null ? '' : v; }); }); return { hs, get }; };
     const a = by([1, 2, 3, 4], (b, k) => [b.h[1], `${b.name} Set Code`, b.h[3], b.h[4]][k]);
@@ -1616,7 +2118,7 @@ async function downloadXlsx() {
     const sevName = { error: 'Fix', warn: 'Read', info: 'Information' };
     const checks = []; for (const it of r.issues) for (const x of it.items) checks.push([sevName[it.sev], it.title, x.id, x.name, x.detail]);
     const hdr = (kind, role) => { const src = S.src[kind], sh = S.sheetOf(src); if (!sh) return ''; const h = sh.rows[src.headerRow] || []; const v = src.cols[role]; return (Array.isArray(v) ? v : v == null ? [] : [v]).map(i => String(h[i]).trim()).join(', '); };
-    const rules = [
+    const rules = !reg ? [['Source', 'Ready table: ' + r.flats.map(f => f.name).join(', ')]] : [
       ['Students included', { either: 'Everyone in either register', y10: 'Year 10 register only', y11: 'Year 11 register only', both: 'Only students in both registers' }[cfg.roster]],
       ['Year 10 January level', 'Highest of: ' + hdr('y10', 'jan')], ['Year 10 June level', 'Highest of: ' + hdr('y10', 'jun')],
       ['Year 11 January level', 'Highest of: ' + hdr('y11', 'jan')], ['Year 11 June level', 'IB results column: ' + hdr('ib', 'grade')],
@@ -1625,11 +2127,11 @@ async function downloadXlsx() {
       ...[...r.y10Codes].map(([k, v]) => [`Year 10 code ${v.label}`, r.y10name(v.label)]),
     ];
     const blob = await buildXlsx([master,
-      { name: 'Y10 FINAL', header: a.hs, rows: y10s.map(s => a.get.map(g => g(s))), freezeCols: 4, widths: a.hs.map(() => 16), textCols: new Set([0, 1]), headerHeight: 62 },
-      { name: 'Y11 FINAL', header: b11.hs, rows: y11s.map(s => b11.get.map(g => g(s))), freezeCols: 4, widths: b11.hs.map(() => 16), textCols: new Set([0, 1]), headerHeight: 62 },
+      ...(reg && r.y10 ? [{ name: 'Y10 FINAL', header: a.hs, rows: y10s.map(s => a.get.map(g => g(s))), freezeCols: 4, widths: a.hs.map(() => 16), textCols: new Set([0, 1]), headerHeight: 62 }] : []),
+      ...(reg && r.y11 ? [{ name: 'Y11 FINAL', header: b11.hs, rows: y11s.map(s => b11.get.map(g => g(s))), freezeCols: 4, widths: b11.hs.map(() => 16), textCols: new Set([0, 1]), headerHeight: 62 }] : []),
       { name: 'Checks', header: ['Action', 'Check', 'Student ID', 'Name', 'Detail'], rows: checks, widths: [12, 52, 14, 30, 70], headerHeight: 22 },
       { name: 'Rules used', header: ['Rule', 'Setting'], rows: rules, widths: [44, 90], headerHeight: 22 }]);
-    download(blob, `${MASTER_SHEET} built ${new Date().toISOString().slice(0, 10)}.xlsx`);
+    download(blob, `${reg ? MASTER_SHEET : 'Data'} built ${new Date().toISOString().slice(0, 10)}.xlsx`);
   } catch (e) { console.error(e); toast('The Excel file could not be written: ' + e.message); }
   busy();
 }
@@ -1648,10 +2150,22 @@ document.addEventListener('click', e => {
   else if (act === 'tab') { S.tab = el.dataset.tab; render(); }
   else if (act === 'score') { const src = S.src[el.dataset.kind], i = +el.dataset.i; const list = new Set(src.cols[el.dataset.role] || []); list.has(i) ? list.delete(i) : list.add(i); src.cols[el.dataset.role] = [...list].sort((a, b) => a - b); src.manual = true; recompute(); render(); }
   else if (act === 'xlsx') downloadXlsx();
+  else if (act === 'usesug') { const id = +el.dataset.sheet; S.touched.delete(id); setRole(id, S.suggest[id] || ''); S.touched.delete(id); recompute(); render(); }
+  else if (act === 'fcol' || act === 'fall' || act === 'fnone' || act === 'fmain') {
+    const fl = S.flats.find(f => f.sheet === +el.dataset.sheet); if (!fl) return;
+    const sh = S.sheetOf(fl), hdr = sh.rows[fl.headerRow] || [];
+    if (act === 'fcol') { const i = +el.dataset.i, set = new Set(fl.skip); set.has(i) ? set.delete(i) : set.add(i); fl.skip = [...set]; }
+    else if (act === 'fall') fl.skip = [];
+    else if (act === 'fnone') fl.skip = hdr.map((h, i) => i).filter(i => hdr[i] != null && i !== fl.key);
+    else { S.flats = [fl, ...S.flats.filter(f => f !== fl)]; S.selTouched = false; }
+    const open = el.closest('details'); recompute(); render();
+    if (open) { const again = $(`[data-act="fall"][data-sheet="${fl.sheet}"]`); if (again) again.closest('details').open = true; }
+  }
   else if (act === 'rmblock') { S.cfg.blocks.splice(+el.dataset.i, 1); recompute(); render(); }
   else if (act === 'addblock') { const name = $('#newblock').value.trim(); if (!name) return; if (S.cfg.blocks.some(b => norm(b.name) === norm(name))) { toast('There is already a block with that name.'); return; } let key = 'X' + alnum(name).slice(0, 6).toUpperCase(); while (S.cfg.blocks.some(b => b.key === key)) key += '1'; const def = DEFAULT_BLOCKS.find(b => norm(b.name) === norm(name)); S.cfg.blocks.push(def ? { ...def, h: [...def.h] } : { key, name, y10: norm(name), y11: norm(name), h: customHeaders(name) }); recompute(); render(); }
   else if (act === 'resetrules') { S.cfg = defaultCfg(); recompute(); render(); }
-  else if (act === 'mapmode') { S.mapMode = el.dataset.m; render(); }
+  else if (act === 'mapmode') { Ed.flush(); S.mapMode = el.dataset.m; render(); }
+  else if (act === 'dltpl') downloadTemplate();
   else if (act === 'rematch') { S.map = {}; S.savedMap = {}; S.texts = {}; autoMap(); save(); render(); }
   else if (act === 'selall' || act === 'selnone') { S.selTouched = true; for (const li2 of $$('#people li')) { if (li2.hidden) continue; act === 'selall' ? S.sel.add(li2.dataset.id) : S.sel.delete(li2.dataset.id); } const keep = $('#people').scrollTop; S.lastDone = ''; render(); $('#people').scrollTop = keep; }
   else if (act === 'create') createDocs(false);
@@ -1661,7 +2175,13 @@ document.addEventListener('change', e => {
   const el = e.target, act = el.dataset && el.dataset.act; if (!act) return;
   if (el.id === 'pick') return;
   const kind = el.dataset.kind;
-  if (act === 'sheet') { const sh = S.sheets.find(s => s.id === +el.value); if (!sh) S.src[kind] = { sheet: null, headerRow: 0, cols: {} }; else { const d = detectIn(kind, sh) || { headerRow: 0, cols: {} }; S.src[kind] = { sheet: sh.id, headerRow: d.headerRow, cols: d.cols, manual: true }; } recompute(); render(); }
+  if (act === 'role') { setRole(+el.dataset.sheet, el.value); recompute(); render(); }
+  else if (act === 'fhrow' || act === 'fkey') {
+    const fl = S.flats.find(f => f.sheet === +el.dataset.sheet); if (!fl) return; const sh = S.sheetOf(fl);
+    if (act === 'fhrow') { fl.headerRow = Math.max(1, +el.value || 1) - 1; fl.key = flatKeyCol(sh, fl.headerRow); fl.skip = []; } else fl.key = el.value === '' ? null : +el.value;
+    S.selTouched = false; recompute(); render();
+  }
+  else if (act === 'sheet') { const sh = S.sheets.find(s => s.id === +el.value); if (!sh) S.src[kind] = { sheet: null, headerRow: 0, cols: {} }; else { const d = detectIn(kind, sh) || { headerRow: 0, cols: {} }; S.src[kind] = { sheet: sh.id, headerRow: d.headerRow, cols: d.cols, manual: true }; } recompute(); render(); }
   else if (act === 'hrow') { const src = S.src[kind], sh = S.sheetOf(src); const n = Math.max(1, +el.value || 1) - 1; src.headerRow = n; src.cols = matchRoles(kind, sh.rows[n] || [], sh, n).cols; src.manual = true; recompute(); render(); }
   else if (act === 'col') { S.src[kind].cols[el.dataset.role] = el.value === '' ? null : +el.value; S.src[kind].manual = true; recompute(); render(); }
   else if (act === 'roster') { S.cfg.roster = el.value; S.selTouched = false; recompute(); render(); }
@@ -1673,7 +2193,7 @@ document.addEventListener('change', e => {
   else if (act === 'map') { S.map[el.dataset.key] = el.value; if (el.value === 'text' && S.texts[el.dataset.key] === undefined) S.texts[el.dataset.key] = ''; save(); render(); }
   else if (act === 'maptext') { S.texts[el.dataset.key] = el.value; save(); render(); }
   else if (act === 'pvstudent') { S.previewId = el.value; render(); }
-  else if (act === 'sel') { S.selTouched = true; el.checked ? S.sel.add(el.dataset.id) : S.sel.delete(el.dataset.id); S.lastDone = ''; $('#selcount').textContent = S.sel.size; const b = $('#createbtn'); b.textContent = `Create ${plural(S.sel.size, 'transcript')}`; b.disabled = !S.sel.size; renderRail(); }
+  else if (act === 'sel') { S.selTouched = true; el.checked ? S.sel.add(el.dataset.id) : S.sel.delete(el.dataset.id); S.lastDone = ''; $('#selcount').textContent = S.sel.size; const b = $('#createbtn'); b.textContent = `Create ${plural(S.sel.size, docWord())}`; b.disabled = !S.sel.size; renderRail(); }
   else if (act === 'mode') { S.out.mode = el.value; save(); const keep = $('#people').scrollTop; render(); $('#people').scrollTop = keep; }
   else if (act === 'pattern') { S.out.pattern = el.value.trim() || '{Surname}_{Forename}_{DIA ID}'; save(); }
   else if (act === 'pform') { S.pform = el.value; filterPeople(); }
